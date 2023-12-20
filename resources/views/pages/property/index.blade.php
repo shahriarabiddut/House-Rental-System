@@ -21,26 +21,26 @@
             </div>
         </div>
          <!--	Banner   --->
-		 <!-- Session Messages Starts -->
-         @if(Session::has('success'))
-         <div class="p-3 mb-2 bg-success text-white">
-             <p>{{ session('success') }} </p>
-         </div>
-         @endif
-         @if(Session::has('danger'))
-         <div class="p-3 mb-2 bg-danger text-white">
-             <p>{{ session('danger') }} </p>
-         </div>
-         @endif
-         <!-- Session Messages Ends -->
+		
 		<!--	Index property   -->
         <div class="full-row bg-gray">
             <div class="container">
                     <div class="row mb-5">
 						<div class="col-lg-12">
 							<h2 class="text-secondary double-down-line text-center">User Listed Property</h2>
-							
                         </div>
+                         <!-- Session Messages Starts -->
+                        @if(Session::has('success'))
+                        <div class="p-3 d-block mb-2 bg-success text-white">
+                            <p>{{ session('success') }} </p>
+                        </div>
+                        @endif
+                        @if(Session::has('danger'))
+                        <div class="p-3 d-block mb-2 bg-danger text-white">
+                            <p>{{ session('danger') }} </p>
+                        </div>
+                        @endif
+                        <!-- Session Messages Ends -->
 					</div>
 					<table class="items-list col-lg-12 table-hover" style="border-collapse:inherit;">
                         <thead>
@@ -50,7 +50,6 @@
                                 <th class="text-white font-weight-bolder">Type</th>
                                 <th class="text-white font-weight-bolder">Added Date</th>
 								<th class="text-white font-weight-bolder">Status</th>
-                                <th class="text-white font-weight-bolder">Featured</th>
 								<th class="text-white font-weight-bolder">Action</th>
                              </tr>
                         </thead>
@@ -62,8 +61,10 @@
                                 <td>{{ $d->type }}</td>
                                 <td>{{ $d->created_at }}</td>
                                 <td>{{ $d->status }}</td>
-                                <td>{{ $d->featured }}</td>
-                                <td>Action Button</td>
+                                <td><a href="{{ route('property.show',$d->id) }}" class="btn btn-info btn-sm"><i class="fa fa-eye"> View</i></a>
+                                    <a href="{{ route('user.property.edit',$d->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-edit">Edit</i></a>
+                                    <a onclick="return confirm('Are You Sure?')" href="{{ url('user/property/'.$d->id.'/delete') }}" class="btn btn-danger btn-sm"><i class="fa fa-trash">Delete</i></a>
+                                </td>
                             </tr>
                             @endforeach
                            

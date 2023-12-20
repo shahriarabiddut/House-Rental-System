@@ -11,6 +11,11 @@
                 <div class="loginbox">
                       <div class="login-right">
             <div class="login-right-wrap">
+              @if(Session::has('success'))
+              <div class="p-3 mb-2 bg-success text-white">
+                  <p>{{ session('success') }} </p>
+              </div>
+              @endif
             @error('email')
             <div class="text-bold bg-danger text-center text-white p-2">{{ $message }}</div>
             @enderror

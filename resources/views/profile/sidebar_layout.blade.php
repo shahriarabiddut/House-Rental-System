@@ -21,30 +21,6 @@
             <span>Dashboard</span></a>
     </li>
 
-    <!-- Divider -->
-    <hr class="sidebar-divider">
-    <!-- Nav Item Support - Utilities Collapse Menu -->
-    <!-- Heading -->
-    <div class="sidebar-heading">
-        Support System
-   </div>
-    <li class="nav-item">
-        <a class="nav-link @if (!request()->is('user/support*'))
-            collapsed
-        @endif" href="#" data-toggle="collapse" data-target="#collapseSeven"
-            aria-expanded="true" aria-controls="collapseSeven">
-            <i class="fas fa-ticket-alt"></i>
-            <span>Support</span>
-        </a>
-        <div id="collapseSeven" class="collapse @if(request()->is('user/support*')) show @endif" aria-labelledby="headingUtilities"
-            data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Support Ticket Management</h6>
-                <a class="collapse-item" href="{{ route('user.support.index') }}">View Support Tickets</a>
-                <a class="collapse-item" href="{{ route('user.support.create') }}">Add New </a>
-            </div>
-        </div>
-    </li>
    
     <!--Logout - Dashboard -->
     <hr class="sidebar-divider d-none d-md-block">

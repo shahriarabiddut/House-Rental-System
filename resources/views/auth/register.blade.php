@@ -1,4 +1,3 @@
-
 @extends('base')
 @section('title', 'Register')
 

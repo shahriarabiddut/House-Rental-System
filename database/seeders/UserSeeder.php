@@ -14,10 +14,18 @@ class UserSeeder extends Seeder
     {
         //
         $student = [
-            'name' => 'Shahriar Ahmed',
-            'email' => 'shahriarabiddut@gmail.com',
-            'type' => 'owner',
-            'password' => bcrypt('Password')
+            [
+                'name' => 'Owner',
+                'email' => 'owner@gmail.com',
+                'type' => 'owner',
+                'password' => bcrypt('ownerowner')
+            ],
+            [
+                'name' => 'Tenant',
+                'email' => 'tenant@gmail.com',
+                'type' => 'tenant',
+                'password' => bcrypt('tenant')
+            ],
         ];
         User::insert($student);
     }

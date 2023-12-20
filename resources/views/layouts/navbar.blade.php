@@ -28,27 +28,27 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <nav class="navbar navbar-expand-lg navbar-light p-0"> <a class="navbar-brand position-relative" href="index.php"><h2>House Rental</h2></a>
+                    <nav class="navbar navbar-expand-lg navbar-light p-0"> <a class="navbar-brand position-relative" href="{{ route('root') }}"><h2>House Rental</h2></a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav mr-auto">
-                                <li class="nav-item dropdown"> <a class="nav-link" href="index.php" role="button" aria-haspopup="true" aria-expanded="false">Home</a></li>
+                                <li class="nav-item dropdown"> <a class="nav-link" href="{{ route('root') }}" role="button" aria-haspopup="true" aria-expanded="false">Home</a></li>
                                 
                                 <li class="nav-item"> <a class="nav-link" href="#">About</a> </li>
                                 
                                 <li class="nav-item"> <a class="nav-link" href="#">Contact</a> </li>										
                                 
-                                <li class="nav-item"> <a class="nav-link" href="#">Properties</a> </li>
+                                <li class="nav-item"> <a class="nav-link" href="{{ route('property') }}">Properties</a> </li>
 
                                 
                                 @auth
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">My Account</a>
                                     <ul class="dropdown-menu">
-                                        <li class="nav-item"> <a class="nav-link" href="{{ route('user.profile.view') }}">Profile</a> </li>
+                                        <li class="nav-item"> <a class="nav-link" href="{{ route('user.profile.home') }}">Profile</a> </li>
                                         @isset(Auth::user()->type)
                                         @if (Auth::user()->type!='tenant')
-                                        <li class="nav-item"> <a class="nav-link" href="{{ route('user.property.index') }}">Your Property</a> </li>
+                                        <li class="nav-item"> <a class="nav-link" href="{{ route('user.property.index') }}">My Property</a> </li>
                                         @endif
                                         @endisset 
                                         <li class="nav-item"> <a class="nav-link" href="{{ route('logout') }}">Logout</a> </li>	

@@ -69,6 +69,12 @@
                                     <input type="text" class="form-control" name="balc" required placeholder="Enter Balcony  (only no 1 to 10)">
                                 </div>
                             </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label">Drawing Room</label>
+                                <div class="col-lg-9">
+                                    <input type="text" class="form-control" name="hall" required placeholder="Enter Drawing Room  (only no 1 to 10)">
+                                </div>
+                            </div>
 
                         </div><!-- ok -->
                     </div>
@@ -102,7 +108,7 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-lg-3 col-form-label">State</label>
+                                <label class="col-lg-3 col-form-label">Division</label>
                                 <div class="col-lg-9">
                                     <input type="text" class="form-control" name="state" required placeholder="Enter State">
                                 </div>
@@ -157,21 +163,12 @@
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label">Image</label>
                                 <div class="col-lg-9">
-                                    <input class="form-control" name="aimage" type="file" required="">
+                                    <input class="form-control" name="aimage" type="file" required>
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label">Image 2</label>
-                                <div class="col-lg-9">
-                                    <input class="form-control" name="aimage2" type="file" required="">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label">Image 4</label>
-                                <div class="col-lg-9">
-                                    <input class="form-control" name="aimage4" type="file" required="">
-                                </div>
-                            </div>
+                            
+                        </div>
+                        <div class="col-xl-6">
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label">Status</label>
                                 <div class="col-lg-9">
@@ -183,41 +180,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-6">
-
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label">Image 1</label>
-                                <div class="col-lg-9">
-                                    <input class="form-control" name="aimage1" type="file" required="">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label">image 3</label>
-                                <div class="col-lg-9">
-                                    <input class="form-control" name="aimage3" type="file" required="">
-                                </div>
-                            </div>
-                        </div>
                     </div>
-
-                    <hr>
-
-                    <div class="row"><!-- ok -->
-                        <div class="col-md-6">
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label"><b>Is Featured?</b></label>
-                                <div class="col-lg-9">
-                                    <select class="form-control" required name="isFeatured">
-                                        <option value="">Select...</option>
-                                        <option value="0">No</option>
-                                        <option value="1">Yes</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
                     <input type="submit" value="Submit Property" class="btn btn-info" style="margin-left:200px;">
 
                 </div>

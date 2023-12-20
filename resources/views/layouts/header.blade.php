@@ -27,7 +27,7 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('css/color.css') }}" id="color-change">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/owl.carousel.min.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/font-awesome.min.css') }}">
-<link rel="stylesheet" type="text/css" href="fonts/flaticon/flaticon.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('fonts/flaticon/flaticon.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
 
 <!--	Title

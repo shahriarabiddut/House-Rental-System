@@ -25,24 +25,24 @@
 
 <!--	Js Link
 ============================================================--> 
-<script src="js/jquery.min.js"></script> 
+<script src="{{ asset('js/jquery.min.js')}}"></script> 
 <!--jQuery Layer Slider --> 
-<script src="js/greensock.js"></script> 
-<script src="js/layerslider.transitions.js"></script> 
-<script src="js/layerslider.kreaturamedia.jquery.js"></script> 
+<script src="{{ asset('js/greensock.js')}}"></script> 
+<script src="{{ asset('js/layerslider.transitions.js')}}"></script> 
+<script src="{{ asset('js/layerslider.kreaturamedia.jquery.js')}}"></script> 
 <!--jQuery Layer Slider --> 
-<script src="js/popper.min.js"></script> 
-<script src="js/bootstrap.min.js"></script> 
-<script src="js/owl.carousel.min.js"></script> 
-<script src="js/tmpl.js"></script> 
-<script src="js/jquery.dependClass-0.1.js"></script> 
-<script src="js/draggable-0.1.js"></script> 
-<script src="js/jquery.slider.js"></script> 
-<script src="js/wow.js"></script> 
-<script src="js/YouTubePopUp.jquery.js"></script> 
-<script src="js/validate.js"></script> 
-<script src="js/jquery.cookie.js"></script> 
-<script src="js/custom.js"></script>
+<script src="{{ asset('js/popper.min.js')}}"></script> 
+<script src="{{ asset('js/bootstrap.min.js')}}"></script> 
+<script src="{{ asset('js/owl.carousel.min.js')}}"></script> 
+<script src="{{ asset('js/tmpl.js')}}"></script> 
+<script src="{{ asset('js/jquery.dependClass-0.1.js')}}"></script> 
+<script src="{{ asset('js/draggable-0.1.js')}}"></script> 
+<script src="{{ asset('js/jquery.slider.js')}}"></script> 
+<script src="{{ asset('js/wow.js')}}"></script> 
+<script src="{{ asset('js/YouTubePopUp.jquery.js')}}"></script> 
+<script src="{{ asset('js/validate.js')}}"></script> 
+<script src="{{ asset('js/jquery.cookie.js')}}"></script> 
+<script src="{{ asset('js/custom.js')}}"></script>
 </body>
 
 </html>

@@ -26,6 +26,12 @@ class ProfileController extends Controller
             'user' => $request->user(),
         ]);
     }
+    public function home(Request $request): View
+    {
+        return view('pages.profile', [
+            'user' => $request->user(),
+        ]);
+    }
 
 
     public function edit(Request $request): View
