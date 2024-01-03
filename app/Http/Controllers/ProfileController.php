@@ -22,13 +22,13 @@ class ProfileController extends Controller
      */
     public function view(Request $request): View
     {
-        return view('profile.partials.view', [
+        return view('pages.user.profile', [
             'user' => $request->user(),
         ]);
     }
     public function home(Request $request): View
     {
-        return view('pages.profile', [
+        return view('pages.user.profile', [
             'user' => $request->user(),
         ]);
     }
@@ -36,7 +36,7 @@ class ProfileController extends Controller
 
     public function edit(Request $request): View
     {
-        return view('profile.partials.edit', [
+        return view('pages.user.edit', [
             'user' => $request->user(),
         ]);
     }
@@ -49,6 +49,7 @@ class ProfileController extends Controller
         $data = User::find($request->userid);
         $formFields = $request->validate([
             'name' => 'required',
+            'nid' => 'required',
             'mobile' => 'required',
         ]);
         //If user Gieven address
@@ -63,6 +64,7 @@ class ProfileController extends Controller
         }
 
         $data->name = $request->name;
+        $data->nid = $request->nid;
         $data->mobile = $request->mobile;
         $data->address = $request->address;
         $data->photo = $formFields['photo'];

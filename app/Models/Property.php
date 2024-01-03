@@ -16,4 +16,8 @@ class Property extends Model
     {
         return $this->hasMany(PropertyImage::class, 'property_id');
     }
+    function agreement()
+    {
+        return $this->hasOne(Agreement::class, 'propertyid');
+    }
 }

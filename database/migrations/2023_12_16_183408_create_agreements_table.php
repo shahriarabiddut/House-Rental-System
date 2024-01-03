@@ -15,9 +15,10 @@ return new class extends Migration
             $table->id();
             $table->integer('tenantid')->references('id')->on('users')->onDelete('cascade');
             $table->integer('propertyid')->references('id')->on('property')->onDelete('cascade');
-            $table->date('dateofSigning');
-            $table->date('dateCheckOut');
+            $table->date('dateofSigning')->nullable();
+            $table->date('dateCheckOut')->nullable();
             $table->integer('amount');
+            $table->integer('amountStatus')->nullable();
             $table->longText('terms');
             $table->timestamps();
         });

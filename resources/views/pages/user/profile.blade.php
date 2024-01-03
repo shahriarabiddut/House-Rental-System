@@ -21,25 +21,26 @@
             </div>
         </div>
          <!--	Banner   --->
-		 <!-- Session Messages Starts -->
-         @if(Session::has('success'))
-         <div class="p-3 mb-2 bg-success text-white">
-             <p>{{ session('success') }} </p>
-         </div>
-         @endif
-         @if(Session::has('danger'))
-         <div class="p-3 mb-2 bg-danger text-white">
-             <p>{{ session('danger') }} </p>
-         </div>
-         @endif
-         <!-- Session Messages Ends -->
-<!--	My Profile    -->
-<div class="full-row">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8">
+		 
 
-    <h5 class="mt-5 mb-4 text-secondary">Profile</h5>
+
+<!--	login   --->
+<div class="col col-md-2 bg-gray"></div>
+<div class="page-wrappers login-body col col-md-8 p-2 text-center bg-subtle">
+  <div class="login-wrapper">
+    <h5 class="mt-5 mb-4 text-secondary">My Profile</h5>
+    <!-- Session Messages Starts -->
+    @if(Session::has('success'))
+    <div class="p-3 mb-2 bg-success text-white">
+        <p>{{ session('success') }} </p>
+    </div>
+    @endif
+    @if(Session::has('danger'))
+    <div class="p-3 mb-2 bg-danger text-white">
+        <p>{{ session('danger') }} </p>
+    </div>
+    @endif
+    <!-- Session Messages Ends -->
                             <div  class="table-striped font-14 pb-2">
                                 <table class="w-100">
                                     <tbody>
@@ -49,25 +50,43 @@
                                         </tr>
                                         <tr>
                                             <td>Email </td>
-                                            <td class="text-capitalize">{{ $user->email }}</td>
+                                            <td >{{ $user->email }}</td>
                                         </tr>
                                         <tr>
                                             <td>Address </td>
-                                            <td class="text-capitalize">{{ $user->address }}</td>
+                                            <td class="text-capitalize">
+                                            @if ($user->address!='')
+                                                {{ $user->address }}
+                                            @else
+                                                Please Update Address
+                                            @endif </td>
                                         </tr>
                                         <tr>
                                             <td>Mobile </td>
                                             <td class="text-capitalize">{{ $user->mobile }}</td>
                                         </tr>
+                                        <tr>
+                                            <td>NID Number </td>
+                                            <td class="text-capitalize">
+                                                    @if ($user->nid!=null)
+                                                        {{ $user->nid }}
+                                                    @else
+                                                        Please Update NID
+                                                    @endif
+                                                
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2"><a href="{{ route('user.profile.edit') }}"><button class="btn btn-block btn-primary">Edit Profile</button></a></td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
+  </div>
+</div>
 
-  </div>
-  <div class="col-lg-4">
-  </div>
-</div></div></div>
-<!--	My Profile    -->
+<div class="col col-md-2 bg-gray"></div>
+<!--	login  -->
 @section('scripts')
 @endsection
 @endsection

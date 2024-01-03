@@ -33,7 +33,7 @@ class SiteOptionSeeder extends Seeder
             ],
             [
                 'name' => 'contactemail',
-                'value' => 'contactemail@gmail.com'
+                'value' => 'shakil@houserental.com'
             ],
             [
                 'name' => 'contactphone',

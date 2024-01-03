@@ -7,13 +7,13 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
-                        <h2 class="page-name float-left text-white text-uppercase mt-1 mb-0"><b>User Listed Property</b></h2>
+                        <h2 class="page-name float-left text-white text-uppercase mt-1 mb-0"><b>Property - {{ $data->title }}</b></h2>
                     </div>
                     <div class="col-md-6">
                         <nav aria-label="breadcrumb" class="float-left float-md-right">
                             <ol class="breadcrumb bg-transparent m-0 p-0">
                                 <li class="breadcrumb-item text-white"><a href="{{ route('root') }}">Home</a></li>
-                                <li class="breadcrumb-item active">User Listed Property</li>
+                                <li class="breadcrumb-item active">Property - {{ $data->title }}</li>
                             </ol>
                         </nav>
                     </div>
@@ -125,6 +125,52 @@
                                     
                                 </div>
                             @endforeach
+                        </div>
+                    </div>
+					
+                    <div class="col-lg-4">
+                        <div class="sidebar-widget mt-5">
+                        @auth
+                            @if (Auth::user()->type == 'owner' && Auth::user()->id == $data->uid)
+                            <h4 class="double-down-line-left text-secondary position-relative pb-4 mb-4"> Agreement</h4>
+                                @if($data->agreement)
+                                <a href="{{ route('user.agreement.show',$data->agreement->id) }}">
+                                    <div class="bg-info d-block px-3 py-2 rounded text-center text-white text-capitalize">
+                                        View Agreement
+                                    </div></a>
+                                @else
+                                    <a href="{{ route('user.agreement.create1',$data->id) }}">
+                                        <div class="bg-info d-block px-3 py-2 rounded text-center text-white text-capitalize">
+                                            Add Agreement
+                                        </div></a>
+                                @endif
+                            @else
+                                
+                            @endif
+
+                        @else
+
+                        @endauth
+                        </div>
+                        @auth
+                        @if (Auth::user()->type == 'tenant' )
+                        <div class="sidebar-widget mt-5">
+                            @if($data->status=='available')
+                                <h4 class="double-down-line-left text-secondary position-relative pb-4 mb-4">Available for Rent</h4>
+                                <a href="{{ route('user.agreement.signAgreement',$data->id) }}">
+                                <div class="bg-success d-block px-3 py-2 rounded text-center text-white text-capitalize">
+                                    Apply For Rent
+                                </div></a>
+                            @else
+                                <h4 class="double-down-line-left text-secondary position-relative pb-4 mb-4">Not Available for Rent</h4>
+                                <div class="bg-warning d-block px-3 py-2 rounded text-center text-white text-capitalize">
+                                    On Rent
+                                </div>
+                            @endif
+                        </div>
+                        @endif
+                        @endauth
+                        <div class="sidebar-widget mt-5">
                             <h5 class="mt-5 mb-4 text-secondary double-down-line-left position-relative">Contact Agent</h5>
                             <div class="agent-contact pt-60">
                                 <div class="row">
@@ -135,48 +181,22 @@
                                                 <li>{{ $data->owner->mobile }}</li>
                                                 <li>{{ $data->owner->email }}</li>
                                             </ul>
-                                            
-                                            <div class="mt-3 text-secondary hover-text-success">
-                                                <ul>
-                                                    <li class="float-left mr-3"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                                    <li class="float-left mr-3"><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                                    <li class="float-left mr-3"><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
-                                                    <li class="float-left mr-3"><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                                                    <li class="float-left mr-3"><a href="#"><i class="fas fa-rss"></i></a></li>
-                                                </ul>
-                                            </div>
+                                        
                                         </div>
                                     </div>
                                      
                                 </div>
                             </div>
                         </div>
-                    </div>
-					
-                    <div class="col-lg-4">
-                        <h4 class="double-down-line-left text-secondary position-relative pb-4 mb-4 mt-5">Featured Property</h4>
-                        <ul class="property_list_widget">
-							
-                            <li> <img src="{{ asset('storage/'.$data->pimage) }}" alt="pimage">
-                                <h6 class="text-secondary hover-text-success text-capitalize"><a href="property">property</a></h6>
-                                <span class="font-14"><i class="fas fa-map-marker-alt icon-success icon-small"></i> loc</span>
-                                
-                            </li>
-
-                        </ul>
-
-                        <div class="sidebar-widget mt-5">
-                            <h4 class="double-down-line-left text-secondary position-relative pb-4 mb-4">Recently Added Property</h4>
-                            <ul class="property_list_widget">
-							
-                                <li> <img src="image" alt="pimage">
-                                    <h6 class="text-secondary hover-text-success text-capitalize"><a href="#">image</a></h6>
-                                    <span class="font-14"><i class="fas fa-map-marker-alt icon-success icon-small"></i> </span>
-                                    
-                                </li>
-
-                            </ul>
-                        </div>
+                        @auth
+                            @if (Auth::user()->type == 'owner')
+                            <a href="{{ route('user.profile.edit') }}">
+                                <div class="bg-primary d-block px-3 py-2 rounded text-center text-white text-capitalize">
+                                    Edit Details
+                                </div></a>
+                            @endif
+                        @endauth
+                        
                     </div>
                 </div>
             </div>

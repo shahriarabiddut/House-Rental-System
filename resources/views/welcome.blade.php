@@ -82,8 +82,19 @@
                                     @foreach ($data as $key => $property)
                                     <div class="col-md-6 col-lg-4">
                                         <div class="featured-thumb hover-zoomer mb-4">
+                                            <a href="{{ route('property.show',$property->id) }}">
                                             <div class="overlay-black overflow-hidden position-relative"> <img src="{{ asset('storage/'.$property->pimage) }}" alt="pimage">
-                                                @if ($key<3)
+                                                @php
+                                                $date = Carbon\Carbon::now()->setTimezone('GMT+6')->format('Y-m-d');
+                                                $date1 = strtotime($date);
+                                                $date2 = strtotime($property->created_at);
+
+                                                $diff = abs($date1-$date2) ;
+                                                $years =floor($diff /(365*60*60*24));
+                                                $months =floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
+                                                $days =floor(($diff - $years * 365*60*60*24 - $months * 30*60*60*24) / (60*60*24));
+                                                @endphp
+                                                @if ($days<8)
                                                 <div class="featured bg-success text-white">New</div>
                                                 @endif
                                                 <div class="sale bg-success text-white text-capitalize">
@@ -93,6 +104,7 @@
                                                 @endif</div>
                                                 <div class="price text-primary"><b> {{ $property->price }} tk </b><span class="text-white">{{ $property->bedroom }} BHK </span></div>
                                             </div>
+                                        </a>
                                             <div class="featured-thumb-data shadow-one">
                                                 <div class="p-3">
                                                     <h5 class="text-secondary hover-text-success mb-2 text-capitalize"><a href="{{ route('property.show',$property->id) }}">{{ $property->title }}</a></h5>

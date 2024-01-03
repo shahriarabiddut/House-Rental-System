@@ -34,14 +34,10 @@
 <script src="{{ asset('js/popper.min.js')}}"></script> 
 <script src="{{ asset('js/bootstrap.min.js')}}"></script> 
 <script src="{{ asset('js/owl.carousel.min.js')}}"></script> 
-<script src="{{ asset('js/tmpl.js')}}"></script> 
 <script src="{{ asset('js/jquery.dependClass-0.1.js')}}"></script> 
 <script src="{{ asset('js/draggable-0.1.js')}}"></script> 
 <script src="{{ asset('js/jquery.slider.js')}}"></script> 
 <script src="{{ asset('js/wow.js')}}"></script> 
-<script src="{{ asset('js/YouTubePopUp.jquery.js')}}"></script> 
-<script src="{{ asset('js/validate.js')}}"></script> 
-<script src="{{ asset('js/jquery.cookie.js')}}"></script> 
 <script src="{{ asset('js/custom.js')}}"></script>
 </body>
 
