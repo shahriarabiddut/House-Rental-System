@@ -112,8 +112,10 @@
                             </div>
                             <h5 class="mt-5 mb-4 text-secondary">Property Images 
                                 @auth
+                                @if (Auth::user()->type == 'owner' && Auth::user()->id == $data->uid)
                                 <a href="{{ route('user.property.imageAdd',$data->id) }}">
                                 <button class="btn btn-success float-right mx-1 rounded"> + Add Image</button></a>
+                                @endif
                                 @endauth
                             </h5>
                             @foreach ($data->propertyImage as $propertyImage)

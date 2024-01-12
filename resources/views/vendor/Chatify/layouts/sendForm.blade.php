@@ -29,7 +29,7 @@
   <br>
     <input type="text" id="linkInput" placeholder="Enter Property Id">
     <br>
-    <input type="text" id="emailInput" placeholder="Enter Email">
+    <input type="text" id="emailInput" placeholder="Enter Email of Tenant">
     <br>
     <button onclick="generateLink()">Generate Link</button>
     <button onclick="closeModal()">Close</button>
