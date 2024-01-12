@@ -33,7 +33,7 @@
                             <th>Photo</th>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>Mobile</th>
+                            <th>Type</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -43,7 +43,7 @@
                             <th>Photo</th>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>Mobile</th>
+                            <th>Type</th>
                             <th>Action</th>
                         </tr>
                     </tfoot>
@@ -59,7 +59,7 @@
                             /></td>
                             <td>{{ $d->name }}</td>
                             <td>{{ $d->email }}</td>
-                            <td>{{ $d->mobile }}</td>
+                            <td>{{ $d->type }}</td>
                             
                             
                             <td class="text-center">

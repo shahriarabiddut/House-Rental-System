@@ -35,7 +35,6 @@ Route::middleware('auth')->prefix('user')->name('user.')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 Route::middleware('userType:owner')->prefix('user')->name('user.')->group(function () {
-    // Routes accessible only to users with 'user' type
     //Prpoperty Routes
     Route::get('property/{id}/delete', [PropertyController::class, 'destroy'])->name('property.destroy');
     Route::post('property/imageAdded', [PropertyController::class, 'imageStore'])->name('property.imageStore');
@@ -46,10 +45,12 @@ Route::middleware('userType:owner')->prefix('user')->name('user.')->group(functi
     Route::get('agreement/{id}/accept', [AgreementController::class, 'accept'])->name('agreement.accept');
     Route::get('agreement/{id}/create', [AgreementController::class, 'create1'])->name('agreement.create1');
     Route::resource('agreement', AgreementController::class);
+    //
+    Route::get('agreement/{id}/makeAgreement/{email}', [AgreementController::class, 'makeAgreement'])->name('agreement.makeAgreement');
 });
 Route::middleware('userType:tenant')->prefix('user')->name('user.')->group(function () {
     //tenant Agreement Routes
-    Route::post('agreement/storeAgreement', [AgreementController::class, 'storeAgreement'])->name('agreement.storeAgreement');
+    Route::put('agreement/storeAgreement', [AgreementController::class, 'storeAgreement'])->name('agreement.storeAgreement');
     Route::get('agreement/{id}/signAgreement', [AgreementController::class, 'signAgreement'])->name('agreement.signAgreement');
 });
 

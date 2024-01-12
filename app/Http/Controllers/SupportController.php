@@ -120,27 +120,14 @@ class SupportController extends Controller
         $data = Support::find($id);
         return view('admin.support.show', ['data' => $data]);
     }
-    //Staff View
-    public function staffIndex()
-    {
-        //
-        $data = Support::all();
-        return view('staff.support.index', ['data' => $data]);
-    }
-    public function staffAdmin(string $id)
+    public function adminReply(string $id)
     {
         //
         $data = Support::find($id);
-        return view('staff.support.show', ['data' => $data]);
-    }
-    public function staffReply(string $id)
-    {
-        //
-        $data = Support::find($id);
-        return view('staff.support.reply', ['data' => $data,]);
+        return view('admin.support.reply', ['data' => $data,]);
     }
 
-    public function staffReplyUpdate(Request $request, $id)
+    public function adminReplyUpdate(Request $request, $id)
     {
         //
         $data = Support::find($id);
@@ -153,6 +140,6 @@ class SupportController extends Controller
         $data->repliedby = $request->repliedby;
         $data->save();
 
-        return redirect('staff/support')->with('success', 'Support Ticket has been Replied Successfully!');
+        return redirect('admin/support')->with('success', 'Support Ticket has been Replied Successfully!');
     }
 }

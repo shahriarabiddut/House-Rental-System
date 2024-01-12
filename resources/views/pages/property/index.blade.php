@@ -25,7 +25,7 @@
 		<!--	Index property   -->
         <div class="full-row bg-gray">
             <div class="container">
-                    <div class="row mb-5">
+                    <div class="row mb-3">
 						<div class="col-lg-12">
 							<h2 class="text-secondary double-down-line text-center">User Listed Property</h2>
                         </div>
@@ -42,6 +42,14 @@
                         @endif
                         <!-- Session Messages Ends -->
 					</div>
+                    @foreach ($data as $key => $d)
+                    @if ($d->agreement==null)
+                    <div class="row bg-danger text-white p-2 m-2">
+                        Add Agreement to get published on property page
+                    </div>
+                    @break
+                    @endif
+                    @endforeach
 					<table class="items-list col-lg-12 table-hover" style="border-collapse:inherit;">
                         <thead>
                              <tr  class="bg-dark">
@@ -51,6 +59,7 @@
                                 <th class="text-white font-weight-bolder">Added Date</th>
 								<th class="text-white font-weight-bolder">Status</th>
 								<th class="text-white font-weight-bolder">Action</th>
+								<th class="text-white font-weight-bolder">Agreement</th>
                              </tr>
                         </thead>
                         <tbody>
@@ -65,6 +74,15 @@
                                     <a href="{{ route('user.property.edit',$d->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-edit">Edit</i></a>
                                     <a onclick="return confirm('Are You Sure?')" href="{{ url('user/property/'.$d->id.'/delete') }}" class="btn btn-danger btn-sm"><i class="fa fa-trash">Delete</i></a>
                                 </td>
+                                <td>@if ($d->agreement)
+                                    Agreement Available
+                                    @else
+                                    <a href="{{ route('user.agreement.create1',$d->id) }}">
+                                        <div class="bg-info d-block px-3 py-2 rounded text-center text-white text-capitalize">
+                                            Add Agreement
+                                        </div></a>
+                                @endif
+                                      </td>
                             </tr>
                             @endforeach
                            

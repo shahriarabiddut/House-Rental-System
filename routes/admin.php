@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\StaffController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\StaffDepartmentController;
 use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Admin\PropertyController;
 
 //Admin
 Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
@@ -29,25 +30,12 @@ Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
     Route::get('/profile', [HomeController::class, 'view'])->name('profile.view');
     Route::get('/profile/edit', [HomeController::class, 'edit'])->name('profile.edit');
     Route::put('/profile/edit', [HomeController::class, 'update'])->name('profile.update');
-    // Email Crud
-    Route::get('email/{id}/delete', [EmailController::class, 'destroy']);
-    Route::resource('email', EmailController::class);
 
-    // Student Routes
+    // User Routes
     Route::get('user/{id}/delete', [UserController::class, 'destroy']);
     Route::resource('user', UserController::class);
-
-    // Department Routes
-    Route::get('department/{id}/delete', [StaffDepartmentController::class, 'destroy']);
-    Route::resource('department', StaffDepartmentController::class);
-
-    // Staff 
-
-    // Staff Crud
-    Route::get('staff/{id}/delete', [StaffController::class, 'destroy']);
-    Route::get('staff/{id}/change', [StaffController::class, 'change']);
-    Route::put('staff/{id}/changeUpdate', [StaffController::class, 'changeUpdate'])->name('staff.changeUpdate');
-    Route::resource('staff', StaffController::class);
+    // Property Routes
+    Route::resource('property', PropertyController::class);
 
     //Suport Ticekts View
     Route::get('support', [SupportController::class, 'adminIndex'])->name('support.index');

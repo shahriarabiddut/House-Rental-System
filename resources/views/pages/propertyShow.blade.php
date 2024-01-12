@@ -138,6 +138,12 @@
                                     <div class="bg-info d-block px-3 py-2 rounded text-center text-white text-capitalize">
                                         View Agreement
                                     </div></a>
+                                    <br>
+                                    @if ($data->agreement->tenantid==null)
+                                    <p>Property ID = {{ $data->id }}</p>
+                                        @else
+                                        <p>Tenant - {{ $data->agreement->tenant->name }}</p>
+                                    @endif
                                 @else
                                     <a href="{{ route('user.agreement.create1',$data->id) }}">
                                         <div class="bg-info d-block px-3 py-2 rounded text-center text-white text-capitalize">
@@ -157,10 +163,10 @@
                         <div class="sidebar-widget mt-5">
                             @if($data->status=='available')
                                 <h4 class="double-down-line-left text-secondary position-relative pb-4 mb-4">Available for Rent</h4>
-                                <a href="{{ route('user.agreement.signAgreement',$data->id) }}">
-                                <div class="bg-success d-block px-3 py-2 rounded text-center text-white text-capitalize">
-                                    Apply For Rent
-                                </div></a>
+                                <a href="{{ route('root').'/chatify/'.$data->owner->id }}">
+                                    <div class="bg-success d-block px-3 py-2 rounded text-center text-white text-capitalize">
+                                        Contact For Rent
+                                    </div></a>
                             @else
                                 <h4 class="double-down-line-left text-secondary position-relative pb-4 mb-4">Not Available for Rent</h4>
                                 <div class="bg-warning d-block px-3 py-2 rounded text-center text-white text-capitalize">

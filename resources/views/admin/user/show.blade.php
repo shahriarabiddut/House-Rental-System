@@ -31,7 +31,18 @@
                         </tr><tr>
                             <th>Address</th>
                             <td>{{ $data->address }}</td>
-                        </tr><tr>
+                        </tr>
+                        <tr>
+                            <th>User Type</th>
+                            <td>{{ $data->type }}</td>
+                        </tr>
+                        @if ($data->type=='tenant')
+                        <tr>
+                            <th>NID</th>
+                            <td>{{ $data->nid }}</td>
+                        </tr>
+                        @endif
+                        <tr>
                             <td colspan="2">
                                 <a href="{{ route('admin.user.edit',$data->id) }}" class="float-right btn btn-info btn-sm"><i class="fa fa-edit"> Edit User: {{ $data->name }}  </i></a>
                             </td>

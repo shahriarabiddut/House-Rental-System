@@ -21,7 +21,7 @@ class HomeController extends Controller
     public function property()
     {
         //
-        $data = Property::all();
+        $data = Property::paginate(4);;
         return view('pages.property', ['data' => $data]);
     }
     public function propertyShow(string $id)
@@ -44,6 +44,9 @@ class HomeController extends Controller
         }
         if ($request->city != '') {
             $data = Property::all()->where('city', '==', $request->city);
+        }
+        if ($request->type == '' && $request->city == '' && $request->price == '' && $request->bhk == '') {
+            $data = Property::all();
         }
         return view('pages.propertySearch', ['data' => $data]);
     }

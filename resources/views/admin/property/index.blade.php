@@ -1,12 +1,9 @@
 @extends('admin/layout')
-@section('title', 'Emails')
+@section('title', 'Propertys')
 
 @section('content')
 
 
-    <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Emails</h1>
-    <p class="mb-4">Emails</p>
             <!-- Session Messages Starts -->
             @if(Session::has('success'))
             <div class="p-3 mb-2 bg-success text-white">
@@ -22,8 +19,7 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Email Data
-            <a href="{{ route('admin.email.create') }}" class="float-right btn btn-success btn-sm" target="_blank">Send New Email</a> </h6>
+            <h3 class="m-0 font-weight-bold text-primary">Property Data
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -32,11 +28,11 @@
                         <tr>
                             <th>#</th>
                             <th>Name</th>
-                            <th>Email</th>
-                            <th>Subject</th>
-                            <th>Objective</th>
-                            <th>Sent By</th>
-                            <th>Sent Date</th>
+                            <th>type</th>
+                            <th>BHK</th>
+                            <th>Status</th>
+                            <th>Owner</th>
+                            <th>Submitted</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -44,11 +40,11 @@
                         <tr>
                             <th>#</th>
                             <th>Name</th>
-                            <th>Email</th>
-                            <th>Subject</th>
-                            <th>Objective</th>
-                            <th>Sent By</th>
-                            <th>Sent Date</th>
+                            <th>type</th>
+                            <th>BHK</th>
+                            <th>Status</th>
+                            <th>Owner</th>
+                            <th>Submitted</th>
                             <th>Action</th>
                         </tr>
                     </tfoot>
@@ -57,22 +53,15 @@
                         @foreach ($data as $key=> $d)
                         <tr>
                             <td>{{ ++$key }}</td>
-                            <td>{{ $d->name }}</td>
-                            <td>{{ $d->email }}</td>
-                            <td>{{ $d->subject }}</td>
-                            <td>{{ $d->objective }}</td>
-                            <td>
-                                @if ($d->staff_id==0)
-                                    Admin
-                                @else
-                                    {{ $d->staff->name }}
-                                @endif
-                            </td>
+                            <td>{{ $d->title }}</td>
+                            <td>{{ $d->type }}</td>
+                            <td>{{ $d->bedroom }} BHK</td>
+                            <td>{{ $d->status }}</td>
+                            <td><a href="{{ route('admin.user.show',$d->owner->id) }}">{{ $d->owner->name }}</td>
                             <td>{{ $d->created_at }}</td>
                             
                             <td class="text-center">
-                                <a href="{{ url('admin/email/'.$d->id) }}" class="btn btn-info btn-sm mb-1"><i class="fa fa-eye"></i></a> <br> 
-                                <a onclick="return confirm('Are You Sure?')" href="{{ url('admin/email/'.$d->id.'/delete') }}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+                                <a href="{{ url('admin/property/'.$d->id) }}" class="btn btn-info btn-sm mb-1"><i class="fa fa-eye"></i></a> <br> 
                             </td>
 
                         </tr>
