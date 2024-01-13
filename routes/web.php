@@ -51,8 +51,11 @@ Route::middleware('userType:owner')->prefix('user')->name('user.')->group(functi
 });
 Route::middleware('userType:tenant')->prefix('user')->name('user.')->group(function () {
     //tenant Agreement Routes
-    Route::put('agreement/storeAgreement', [AgreementController::class, 'storeAgreement'])->name('agreement.storeAgreement');
+    Route::put('agreements/storeAgreement', [AgreementController::class, 'storeAgreement'])->name('agreement.storeAgreement');
     Route::get('agreement/{id}/signAgreement', [AgreementController::class, 'signAgreement'])->name('agreement.signAgreement');
+    Route::get('agreementshow/{id}', [AgreementController::class, 'showt'])->name('agreement.showt');
+
+    Route::get('agreements/tenant', [AgreementController::class, 'tenant'])->name('agreement.tenant');
 });
 
 require __DIR__ . '/auth.php';

@@ -57,9 +57,12 @@
                                             <td>Amount :</td>
                                             <td class="text-capitalize">{{ $data->amount }}</td>
                                             <td>Amount Status :</td>
-                                            <td class="text-capitalize">@if ($data->amountStatus==null)
+                                            <td class="text-capitalize">
+                                            @if ($data->amountStatus=='0')
                                                 N/A
-                                                @else
+                                            @elseif ($data->amountStatus=='1')
+                                            Processing
+                                            @else
                                                 Paid
                                             @endif
                                         </td>
@@ -118,6 +121,7 @@
                                     View Property
                                 </div></a>
                                 @auth
+                                @if (Auth::user()->type!='tenant')
                                 @if ($data->amountStatus!=2)
                                 <hr>
                                 <h4 class="double-down-line-left text-secondary position-relative pb-4 mb-4">Action</h4>
@@ -138,6 +142,7 @@
                                     <div class="bg-danger d-block my-1 px-3 py-2 rounded text-center text-white text-capitalize">
                                         Delete Agreement
                                 </div></a>
+                                @endif
                                 @endif
                                 @endauth
                             </div>

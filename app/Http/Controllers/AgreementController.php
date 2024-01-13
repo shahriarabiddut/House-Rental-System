@@ -28,7 +28,13 @@ class AgreementController extends Controller
         }
         return view('pages.agreement.index', ['data' => $data]);
     }
-
+    public function tenant()
+    {
+        //
+        $user_id = Auth::user()->id;
+        $data = Agreement::all()->where('tenantid', $user_id);
+        return view('pages.agreement.tenant', ['data' => $data]);
+    }
     /**
      * Show the form for creating a new resource.
      */
@@ -77,6 +83,12 @@ class AgreementController extends Controller
      * Display the specified resource.
      */
     public function show(string $id)
+    {
+        //
+        $data = Agreement::find($id);
+        return view('pages.agreement.show', ['data' => $data]);
+    }
+    public function showt(string $id)
     {
         //
         $data = Agreement::find($id);
@@ -149,18 +161,18 @@ class AgreementController extends Controller
         $data = Property::all()->where('id', $id)->first();
         $data2 = Agreement::all()->where('propertyid', $id)->first();
         if ($data != null) {
-            if ($data2->tenantid == null) {
+            if ($data2->tenantid == '0') {
                 return redirect()->route('user.profile.view')->with('danger', 'Sorry Not Permitted!');
+            }
+            if ($data2->tenantid == Auth::user()->id) {
+                if ($data2->dateofSigning == null) {
+                    return view('pages.agreement.agreement', ['data' => $data, 'data2' => $data2]);
+                } else {
+                    return redirect()->route('user.profile.view')->with('danger', 'Not Permitted !Already Signed!');
+                }
             }
         } else {
             return redirect()->route('user.profile.view')->with('danger', 'Not Permitted!');
-        }
-        if ($data2->tenantid == Auth::user()->id) {
-            if ($data2->dateofSigning == null) {
-                return view('pages.agreement.agreement', ['data' => $data, 'data2' => $data2]);
-            } else {
-                return redirect()->route('user.profile.view')->with('danger', 'Not Permitted!');
-            }
         }
     }
     public function storeAgreement(Request $request)

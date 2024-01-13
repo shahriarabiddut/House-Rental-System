@@ -46,11 +46,13 @@
                                     <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">My Account</a>
                                     <ul class="dropdown-menu">
                                         <li class="nav-item"> <a class="nav-link" href="{{ route('user.profile.home') }}">Profile</a> </li>
-                                        @isset(Auth::user()->type)
+                                        @auth
                                         @if (Auth::user()->type!='tenant')
                                         <li class="nav-item"> <a class="nav-link" href="{{ route('user.property.index') }}">My Property</a> </li>
+                                        @else
+                                        <li class="nav-item"> <a class="nav-link" href="{{ route('user.agreement.tenant') }}">My Agreements</a> </li>
                                         @endif
-                                        @endisset 
+                                        @endauth 
                                         <li class="nav-item"> <a class="nav-link" href="{{ route('logout') }}">Logout</a> </li>	
                                         
                                     </ul>
