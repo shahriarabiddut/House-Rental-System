@@ -69,7 +69,7 @@
                                             <td class="text-capitalize">{{ $data->property->title }}</td>
                                             <td>Tenant :</td>
                                             <td class="text-capitalize">
-                                            @if ($data->tenantid==null)
+                                            @if ($data->tenantid=='0')
                                                 N/A
                                                 @else
                                                 {{ $data->tenant->name }}
@@ -117,6 +117,7 @@
                                 <div class="bg-info d-block my-1 px-3 py-2 rounded text-center text-white text-capitalize">
                                     View Property
                                 </div></a>
+                                @auth
                                 @if ($data->amountStatus!=2)
                                 <hr>
                                 <h4 class="double-down-line-left text-secondary position-relative pb-4 mb-4">Action</h4>
@@ -126,16 +127,23 @@
                                         Accept Agreement
                                     </div></a>
                                 @endif
-                                @if ($data->amountStatus!=1)
+                                @if ($data->tenantid !='0')
+                                <a href="{{ route('user.agreement.reject',$data->id) }}">
+                                    <div class="bg-danger d-block my-1 px-3 py-2 rounded text-center text-white text-capitalize">
+                                        Reject Agreement
+                                </div></a>
+                                @endif
+                                @if ($data->amountStatus!=1 && $data->tenantid =='0')
                                 <a href="{{ route('user.agreement.delete',$data->id) }}">
                                     <div class="bg-danger d-block my-1 px-3 py-2 rounded text-center text-white text-capitalize">
                                         Delete Agreement
                                 </div></a>
                                 @endif
+                                @endauth
                             </div>
                             @endif
                         <hr>
-                        <div class="sidebar-widget mt-5">
+                        <div class="sidebar-widget mt-5 mb-5">
                             <h5 class="mt-5 mb-4 text-secondary double-down-line-left position-relative">Contact Tenant</h5>
                             @if ($data->tenantid==null)
                                                 N/A

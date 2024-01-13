@@ -43,6 +43,7 @@ Route::middleware('userType:owner')->prefix('user')->name('user.')->group(functi
     //Agreement Routes
     Route::get('agreement/{id}/delete', [AgreementController::class, 'destroy'])->name('agreement.delete');
     Route::get('agreement/{id}/accept', [AgreementController::class, 'accept'])->name('agreement.accept');
+    Route::get('agreement/{id}/reject', [AgreementController::class, 'reject'])->name('agreement.reject');
     Route::get('agreement/{id}/create', [AgreementController::class, 'create1'])->name('agreement.create1');
     Route::resource('agreement', AgreementController::class);
     //

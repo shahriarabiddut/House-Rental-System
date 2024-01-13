@@ -14,6 +14,7 @@
         <div class="row p-5 bg-white">
             <form method="post" action="{{ route('user.agreement.storeAgreement',$data2->id) }}" enctype="multipart/form-data">
                 @csrf
+                @method('PUT')
                 <div class="description">
                     <h5 class="text-secondary">Agreements</h5>
                     <p>{!! $data2->terms !!}</p>

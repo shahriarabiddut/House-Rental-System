@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('agreements', function (Blueprint $table) {
             $table->id();
             $table->integer('tenantid')->references('id')->on('users')->onDelete('cascade');
+            $table->integer('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('propertyid')->references('id')->on('property')->onDelete('cascade');
             $table->date('dateofSigning')->nullable();
             $table->date('dateCheckOut')->nullable();

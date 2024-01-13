@@ -19,8 +19,14 @@ class AgreementController extends Controller
         //
         $user_id = Auth::user()->id;
         $property = Property::all()->where('uid', $user_id);
-        $data = Agreement::all()->where('propertyid', $property->id);
-        return view('pages.property.index', ['data' => $data]);
+        $data = [];
+        foreach ($property as $p) {
+            $propertyData = Agreement::all()->where('propertyid', $p->id)->first();
+            if ($propertyData != null) {
+                $data[] = Agreement::all()->where('propertyid', $p->id)->first();
+            }
+        }
+        return view('pages.agreement.index', ['data' => $data]);
     }
 
     /**
@@ -58,7 +64,9 @@ class AgreementController extends Controller
         $data->terms = $request->terms;
         $data->amount = $request->amount;
         $data->propertyid = $request->property_id;
+        $data->user_id = Auth::user()->id;
         $data->tenantid = 0;
+        $data->amountStatus = 0;
         //
         $data->save();
 
@@ -98,27 +106,40 @@ class AgreementController extends Controller
         $data->save();
         return redirect()->back()->with('success', 'Agreement has been Accepted Successfully!');
     }
+    public function reject(string $id)
+    {
+        $data = Agreement::find($id);
+        if ($data->amountStatus > 1) {
+            return redirect()->back()->with('danger', 'Not Permitted!');
+        }
+        $data->tenantid = 0;
+        $data->amountStatus = 0;
+        $data->save();
+        return redirect()->back()->with('success', 'Agreement has been rejected Successfully!');
+    }
     //Make Agreement
     public function makeAgreement(string $id, string $email)
     {
         //User
         $getUser = User::all()->where('email', $email)->first();
         if ($getUser == null) {
-            return redirect()->route('user.profile.view')->with('danger', 'USer Not Found!');
+            return redirect()->route('user.agreement.index')->with('danger', 'User Not Found!');
+        } elseif ($getUser->type != 'tenant') {
+            return redirect()->route('user.agreement.index')->with('danger', 'User Type Not Permitted!');
         }
         //Check Property 
         $data = Property::all()->where('id', $id)->first();
         $data2 = Agreement::all()->where('propertyid', $id)->first();
         if ($data != null) {
-            if ($data2->tenantid == null) {
+            if ($data2->tenantid == 0 || $data->amountStatus == 0) {
                 $data2->tenantid = $getUser->id;
                 $data2->save();
-                return redirect()->route('user.profile.view')->with('success', 'Agreement Done!');
+                return redirect()->route('user.agreement.index')->with('success', 'Agreement Applied for Tenant' . $getUser->name . ' (' . $getUser->email . ' ) !');
             } else {
-                return redirect()->route('user.profile.view')->with('danger', 'Not Permitted!');
+                return redirect()->route('user.agreement.index')->with('danger', 'Not Permitted!');
             }
         } else {
-            return redirect()->route('user.profile.view')->with('danger', 'Not Permitted!');
+            return redirect()->route('user.agreement.index')->with('danger', 'Not Permitted!');
         }
     }
     //Signing Agreement
@@ -164,6 +185,7 @@ class AgreementController extends Controller
         $dataPayment->amount = $data->amount;
         $dataPayment->date = $data->dateofSigning;
         $dataPayment->type = 'agreement';
+        $dataPayment->service_id = $data->id;
         $dataPayment->save();
         //
         return redirect()->route('user.profile.view')->with('success', 'Agreement Submitted!');

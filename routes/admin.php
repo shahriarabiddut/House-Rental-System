@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\StaffDepartmentController;
 use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Admin\PropertyController;
+use App\Http\Controllers\AgreementController;
 
 //Admin
 Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
@@ -35,6 +36,10 @@ Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
     Route::get('user/{id}/delete', [UserController::class, 'destroy']);
     Route::resource('user', UserController::class);
     // Property Routes
+    Route::get('property/agreement', [PropertyController::class, 'agreement'])->name('agreement.index');
+    Route::get('property/agreement/{id}', [AgreementController::class, 'show'])->name('agreement.show');
+    Route::get('property/payment', [PropertyController::class, 'payment'])->name('payment.index');
+    Route::get('property/payment/{id}', [PropertyController::class, 'paymentShow'])->name('payment.show');
     Route::resource('property', PropertyController::class);
 
     //Suport Ticekts View

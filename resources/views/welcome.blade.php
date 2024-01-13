@@ -88,7 +88,7 @@
                                                 $date = Carbon\Carbon::now()->setTimezone('GMT+6')->format('Y-m-d');
                                                 $date1 = strtotime($date);
                                                 $date2 = strtotime($property->created_at);
-
+ 
                                                 $diff = abs($date1-$date2) ;
                                                 $years =floor($diff /(365*60*60*24));
                                                 $months =floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
@@ -127,6 +127,13 @@
                                         </div>
                                     </div>
                                     @endforeach
+                                    <div class="col-md-12">
+                                        <nav aria-label="Page navigation">
+                                            <ul class="pagination justify-content-center mt-4">
+                                                {{ $data->links('vendor.pagination.bootstrap-4') }}
+                                            </ul>
+                                        </nav>
+                                    </div>  
                                 </div>
                             </div>
                             

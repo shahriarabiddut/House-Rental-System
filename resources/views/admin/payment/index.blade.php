@@ -1,5 +1,5 @@
 @extends('admin/layout')
-@section('title', 'Properties')
+@section('title', 'Payments')
 
 @section('content')
 
@@ -19,7 +19,7 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h3 class="m-0 font-weight-bold text-primary">Property Data
+            <h3 class="m-0 font-weight-bold text-primary">Payments Data
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -28,11 +28,9 @@
                         <tr>
                             <th>#</th>
                             <th>Name</th>
-                            <th>type</th>
-                            <th>BHK</th>
-                            <th>Status</th>
-                            <th>Owner</th>
-                            <th>Submitted</th>
+                            <th>Method</th>
+                            <th>Service</th>
+                            <th>Date</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -40,11 +38,9 @@
                         <tr>
                             <th>#</th>
                             <th>Name</th>
-                            <th>type</th>
-                            <th>BHK</th>
-                            <th>Status</th>
-                            <th>Owner</th>
-                            <th>Submitted</th>
+                            <th>Method</th>
+                            <th>Service</th>
+                            <th>Date</th>
                             <th>Action</th>
                         </tr>
                     </tfoot>
@@ -53,15 +49,13 @@
                         @foreach ($data as $key=> $d)
                         <tr>
                             <td>{{ ++$key }}</td>
-                            <td>{{ $d->title }}</td>
+                            <td>{{ $d->tenant->name }}</td>
+                            <td>{{ $d->method }}</td>
                             <td>{{ $d->type }}</td>
-                            <td>{{ $d->bedroom }} BHK</td>
-                            <td>{{ $d->status }}</td>
-                            <td><a href="{{ route('admin.user.show',$d->owner->id) }}">{{ $d->owner->name }}</td>
                             <td>{{ $d->created_at }}</td>
                             
                             <td class="text-center">
-                                <a href="{{ url('admin/property/'.$d->id) }}" class="btn btn-info btn-sm mb-1"><i class="fa fa-eye"></i></a> <br> 
+                                <a href="{{ route('admin.payment.show',$d->id) }}" class="btn btn-info btn-sm mb-1"><i class="fa fa-eye"></i></a> <br> 
                             </td>
 
                         </tr>

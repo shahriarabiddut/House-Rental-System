@@ -31,12 +31,14 @@
        <a class="nav-link @if(!request()->is('admin/property*')) collapsed @endif" href="#" data-toggle="collapse" data-target="#collapseproperty"
            aria-expanded="true" aria-controls="collapseproperty">
            <i class="fas fa-fw fa-table"></i>
-           <span>Properties</span>
+           <span>Property</span>
        </a>
        <div id="collapseproperty" class="collapse @if(request()->is('admin/property*')) show @endif" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
            <div class="bg-white py-2 collapse-inner rounded">
                <h6 class="collapse-header">Property Management</h6>
-               <a class="collapse-item" href="{{ route('admin.property.index') }}">View All</a>
+               <a class="collapse-item" href="{{ route('admin.property.index') }}">View Properties</a>
+               <a class="collapse-item" href="{{ route('admin.agreement.index') }}">View Agreements</a>
+               <a class="collapse-item" href="{{ route('admin.payment.index') }}">View Payments</a>
            </div>
        </div>
    </li>

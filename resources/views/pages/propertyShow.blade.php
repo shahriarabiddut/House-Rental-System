@@ -118,6 +118,10 @@
                                 @endif
                                 @endauth
                             </h5>
+                            
+                            @if (count($data->propertyImage) == 0)
+                            No images Found
+                            @else
                             @foreach ($data->propertyImage as $propertyImage)
                                 <div class="accordion" id="accordionExample">
                                     <button class="bg-gray hover-bg-success hover-text-white text-ordinary py-3 px-4 mb-1 w-100 text-left rounded position-relative" type="button" data-toggle="collapse" data-target="{{ '#collapse'.$propertyImage->id }}" aria-expanded="true" aria-controls="{{ 'collapse'.$propertyImage->id }}"> {{ $propertyImage->title }} </button>
@@ -127,6 +131,8 @@
                                     
                                 </div>
                             @endforeach
+                            @endif
+                            
                         </div>
                     </div>
 					

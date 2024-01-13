@@ -52,12 +52,16 @@
                                         @endif
                                         @endisset 
                                         <li class="nav-item"> <a class="nav-link" href="{{ route('logout') }}">Logout</a> </li>	
+                                        
                                     </ul>
                                 </li>
                                 @if (count(Auth::user()->unread) != 0)
                                 <li class="nav-item"> <a class="nav-link" href="{{route('root').'/chatify' }}">{{ count(Auth::user()->unread) }} unread messages</a> </li>
                                 @else
                                 <li class="nav-item"> <a class="nav-link" href="{{route('root').'/chatify' }}">Messages</a> </li>
+                                @endif
+                                @if (Auth::user()->type=='owner')
+                                <li class="nav-item"> <a class="nav-link" href="{{route('user.agreement.index')}}">{{ count(Auth::user()->agreement) }} Agreement Request</a> </li>
                                 @endif
                                 @else
                                 <li class="nav-item"> <a class="nav-link" href="{{ route('login') }}">Login/Register</a> </li>

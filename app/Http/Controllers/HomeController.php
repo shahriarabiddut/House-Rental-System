@@ -15,13 +15,13 @@ class HomeController extends Controller
     public function home()
     {
         //
-        $data = Property::all();
+        $data = Property::paginate(4);
         return view('welcome', ['data' => $data]);
     }
     public function property()
     {
         //
-        $data = Property::paginate(4);;
+        $data = Property::paginate(4);
         return view('pages.property', ['data' => $data]);
     }
     public function propertyShow(string $id)
