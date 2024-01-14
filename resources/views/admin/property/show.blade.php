@@ -15,7 +15,7 @@
                         
                         <tr>
                         <th>Property </th>
-                             <td>{{ $data->title }}</td>
+                             <td><a href="{{ route('property.show',$data->id) }}">{{ $data->title }}</a></td>
                          </tr><tr>
                             <th>Type </th>
                                     <td>{{ $data->type }}</td>

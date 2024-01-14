@@ -1,11 +1,9 @@
 @extends('admin/layout')
-@section('title', 'Support Tickets')
+@section('title', 'Bookings')
 
 @section('content')
 
 
-    <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Support Tickets</h1>
             <!-- Session Messages Starts -->
             @if(Session::has('success'))
             <div class="p-3 mb-2 bg-success text-white">
@@ -21,7 +19,7 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Support Tickets Data
+            <h3 class="m-0 font-weight-bold text-primary">Bookings Data
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -29,11 +27,8 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Student</th>
-                            <th>Subject</th>
-                            <th>Category</th>
-                            <th>RepliedBy</th>
-                            <th>Date</th>
+                            <th>Name</th>
+                            <th>Check In Date</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -41,48 +36,29 @@
                     <tfoot>
                         <tr>
                             <th>#</th>
-                            <th>Student</th>
-                            <th>Subject</th>
-                            <th>Category</th>
-                            <th>RepliedBy</th>
-                            <th>Date</th>
+                            <th>Name</th>
+                            <th>Check In Date</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
                     </tfoot>
                     <tbody>
                         @if($data)
-                        @foreach ($data as $key => $d)
+                        @foreach ($data as $key=> $d)
                         <tr>
                             <td>{{ ++$key }}</td>
-                            <td>{{ $d->student->name }} - {{ $d->student->rollno }}</td>
-                            <td>{{ $d->subject }}</td>
-                            <td>{{ $d->category }}</td>
-                            <td>
-                                @if ($d->repliedby)
-                                {{ $d->staff->name }}
+                            <td>{{ $d->tenant->name }}</td>
+                            <td>{{ $d->date }}</td>
+                            <td
+                                @if ($d->revokeDate == null)
+                                   class="bg-success text-white"> Active
                                 @else
-                                No Reply
+                                    class="bg-warning text-white"> Checked Out on {{ $d->revokeDate }}
                                 @endif
-
-                            </td>
-                            <td>{{ $d->created_at }} </td>
-                            
-                                @switch($d->status)
-                                    @case('2')
-                                    <td class="bg-warning text-white">On Process</td>
-                                        @break
-                                    @case('1')
-                                    <td class="bg-success text-white"> Solved</td>
-                                        @break
-                                    @default
-                                    <td>  No Reply</td>
-                                @endswitch
-                            
+                                </td>
                             
                             <td class="text-center">
-                                <a href="{{ url('admin/support/'.$d->id) }}" class="btn btn-warning btn-sm mb-1"><i class="fa fa-eye"> View</i></a> <br>
-                                
+                                <a href="{{ route('admin.booking.show',$d->id) }}" class="btn btn-info btn-sm mb-1"><i class="fa fa-eye"></i></a> <br> 
                             </td>
 
                         </tr>

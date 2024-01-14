@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Booking;
+use App\Models\Payment;
 use App\Models\Property;
 use App\Models\Agreement;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
-use App\Models\Payment;
+use Illuminate\Support\Facades\Auth;
 
 class PropertyController extends Controller
 {
@@ -39,6 +40,18 @@ class PropertyController extends Controller
             }
         }
         return view('admin.agreement.index', ['data' => $data]);
+    }
+    public function booking()
+    {
+        //
+        $data = Booking::all();
+        return view('admin.booking.index', ['data' => $data]);
+    }
+    public function bookingshow(string $id)
+    {
+        //
+        $data = Booking::find($id);
+        return view('admin.booking.show', ['data' => $data]);
     }
     public function payment()
     {

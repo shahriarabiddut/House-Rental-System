@@ -1,12 +1,12 @@
 @extends('admin/layout')
-@section('title', 'Payment Details')
+@section('title', 'Booking Details')
 @section('content')
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h3 class="m-0 font-weight-bold text-primary">Payment Details 
-            <a href="{{ route('admin.payment.index') }}" class="float-right btn btn-success btn-sm"> <i class="fa fa-arrow-left"></i> View All </a> </h3>
+            <h3 class="m-0 font-weight-bold text-primary">Booking Details 
+            <a href="{{ route('admin.booking.index') }}" class="float-right btn btn-success btn-sm"> <i class="fa fa-arrow-left"></i> View All </a> </h3>
         </div>
         <div class="card-body">
             
@@ -21,34 +21,25 @@
                         <td>{{ $data->tenant->email }}</td>
                         </tr>
                     <tr>
-                        <th>Payment Status </th>
-                        <td>
-                            @switch($data->agreement->amountStatus)
-                                @case(1)
-                                    Payment Made Owner Need to Accept
-                                    @break
-                                @case(2)
-                                    Accepted
-                                    @break
-                                @default
-                                    Requested
-                            @endswitch</td>
+                        <th>Booking Status </th>
+                        <td @if ($data->revokeDate == null)
+                            class="bg-success text-white"> Active
+                         @else
+                             class="bg-warning text-white"> Checked Out on {{ $data->revokeDate }}
+                         @endif
+                        </td>
                     </tr>
                     <tr>
-                        <th>Payment Amount </th>
-                        <td>{{ $data->amount }}</td>
+                        <th>Payment Data </th>
+                        <td>{{ $data->payment->amount }} Tk </td>
                     </tr>
                     <tr>
-                        <th>Payment Method </th>
-                        <td>{{ $data->method }}</td>
+                        <th>Payment Data </th>
+                        <td>{{ $data->payment->method }} ( {{ $data->payment->type }} purpose)</td>
                     </tr>
                     <tr>
-                        <th>Payment Type </th>
-                        <td>{{ $data->type }}</td>
-                    </tr>
-                    <tr>
-                        <th>Date </th>
-                        <td>{{ $data->created_at }}</td>
+                        <th>Check in Date </th>
+                        <td>{{ $data->date }}</td>
                     </tr>
                     <tr>
                         <th>Property </th>

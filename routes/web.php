@@ -26,6 +26,7 @@ Route::post('/property/search', [HomeController::class, 'propertySearch'])->name
 Route::get('user', [ProfileController::class, 'index'])->middleware(['auth'])->name('user.dashboard');
 // Route::get('user', [ProfileController::class, 'index'])->middleware(['auth'])->middleware(['auth', 'verified'])->name('user.dashboard');
 // })->->name('dashboard');
+Route::get('/userProfile/{id}', [ProfileController::class, 'viewUser'])->name('user.view');
 
 Route::middleware('auth')->prefix('user')->name('user.')->group(function () {
     Route::get('/myprofile', [ProfileController::class, 'home'])->name('profile.home');

@@ -39,6 +39,7 @@
                <a class="collapse-item" href="{{ route('admin.property.index') }}">View Properties</a>
                <a class="collapse-item" href="{{ route('admin.agreement.index') }}">View Agreements</a>
                <a class="collapse-item" href="{{ route('admin.payment.index') }}">View Payments</a>
+               <a class="collapse-item" href="{{ route('admin.booking.index') }}">View Bookings</a>
            </div>
        </div>
    </li>

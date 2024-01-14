@@ -38,6 +38,8 @@ Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
     // Property Routes
     Route::get('property/agreement', [PropertyController::class, 'agreement'])->name('agreement.index');
     Route::get('property/agreement/{id}', [AgreementController::class, 'show'])->name('agreement.show');
+    Route::get('property/booking', [PropertyController::class, 'booking'])->name('booking.index');
+    Route::get('property/booking/{id}', [PropertyController::class, 'bookingshow'])->name('booking.show');
     Route::get('property/payment', [PropertyController::class, 'payment'])->name('payment.index');
     Route::get('property/payment/{id}', [PropertyController::class, 'paymentShow'])->name('payment.show');
     Route::resource('property', PropertyController::class);

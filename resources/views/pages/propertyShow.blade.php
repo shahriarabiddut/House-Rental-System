@@ -190,8 +190,10 @@
                                 <div class="row">
                                     <div class="col-sm-8 col-lg-9">
                                         <div class="agent-data text-ordinary mt-sm-20">
-                                            <h6 class="text-success text-capitalize">{{ $data->owner->name }}</h6>
+                                            <a href="{{ route('user.view',$data->owner->id) }}">
+                                            <h6 class="text-success text-capitalize">{{ $data->owner->name }}</h6></a>
                                             <ul class="mb-3">
+                                                <img src="{{$data->owner->photo ? asset('storage/'.$data->owner->photo) : url('images/user.png')}}" alt="User Photo" class="rounded-circle img-fluid" style="width: 150px;"> 
                                                 <li>{{ $data->owner->mobile }}</li>
                                                 <li>{{ $data->owner->email }}</li>
                                             </ul>

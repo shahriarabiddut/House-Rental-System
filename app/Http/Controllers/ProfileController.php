@@ -20,8 +20,14 @@ class ProfileController extends Controller
     /**
      * Display the user's profile form.
      */
+    public function viewUser(string $id)
+    {
+        $user = User::find($id);
+        return view('pages.user.profile', ['user' => $user]);
+    }
     public function view(Request $request): View
     {
+
         return view('pages.user.profile', [
             'user' => $request->user(),
         ]);

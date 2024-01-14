@@ -69,13 +69,13 @@
                                         </tr>
                                         <tr>
                                             <td>Property :</td>
-                                            <td class="text-capitalize">{{ $data->property->title }}</td>
+                                            <td class="text-capitalize"><a href="{{ route('property.show',$data->property->id) }}">{{ $data->property->title }}</a></td>
                                             <td>Tenant :</td>
                                             <td class="text-capitalize">
                                             @if ($data->tenantid=='0')
                                                 N/A
                                                 @else
-                                                {{ $data->tenant->name }}
+                                                <a href="{{ route('user.view',$data->tenant->id) }}">{{ $data->tenant->name }}</a>
                                             @endif</td>
                                         </tr>
                                         <tr> 

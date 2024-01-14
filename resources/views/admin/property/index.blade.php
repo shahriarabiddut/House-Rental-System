@@ -57,7 +57,7 @@
                             <td>{{ $d->type }}</td>
                             <td>{{ $d->bedroom }} BHK</td>
                             <td>{{ $d->status }}</td>
-                            <td><a href="{{ route('admin.user.show',$d->owner->id) }}">{{ $d->owner->name }}</td>
+                            <td><a href="{{ route('user.view',$d->owner->id) }}">{{ $d->owner->name }}</a></td>
                             <td>{{ $d->created_at }}</td>
                             
                             <td class="text-center">

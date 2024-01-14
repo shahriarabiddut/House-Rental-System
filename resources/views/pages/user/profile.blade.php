@@ -1,5 +1,9 @@
 @extends('base')
+@auth
 @section('title', 'My Profile')
+@else
+@section('title', 'Profile of '. $user->name )
+@endauth
 
 @section('content')
         <!--	Banner   --->
@@ -28,7 +32,11 @@
 <div class="col col-md-2 bg-gray"></div>
 <div class="page-wrappers login-body col col-md-8 p-2 text-center bg-subtle">
   <div class="login-wrapper">
+    @auth
     <h5 class="mt-5 mb-4 text-secondary">My Profile</h5>
+    @else
+    <h5 class="mt-5 mb-4 text-secondary">User - {{ $user->name }}</h5>
+    @endauth
     <!-- Session Messages Starts -->
     @if(Session::has('success'))
     <div class="p-3 mb-2 bg-success text-white">
@@ -41,9 +49,15 @@
     </div>
     @endif
     <!-- Session Messages Ends -->
-                            <div  class="table-striped font-14 pb-2">
+                            <div  class="table-striped font-14 pb-2 mb-5">
                                 <table class="w-100">
                                     <tbody>
+                                        <tr>
+                                            <td>Photo </td>
+                                            <td class="text-capitalize">
+                                            <img src="{{$user->photo ? asset('storage/'.$user->photo) : url('images/user.png')}}" alt="User Photo" class="rounded-circle img-fluid" style="width: 150px;">   
+                                            </td>
+                                        </tr>
                                         <tr>
                                             <td>Name </td>
                                             <td class="text-capitalize">{{ $user->name }}</td>
@@ -58,13 +72,22 @@
                                             @if ($user->address!='')
                                                 {{ $user->address }}
                                             @else
-                                                Please Update Address
+                                            @auth
+                                            @if (Auth::user()->id == $user->id)
+                                            Please Update Address
+                                                @else
+                                                N/A
+                                            @endif 
+                                                @else
+                                                N/A
+                                            @endauth
                                             @endif </td>
                                         </tr>
                                         <tr>
                                             <td>Mobile </td>
                                             <td class="text-capitalize">{{ $user->mobile }}</td>
                                         </tr>
+                                        @auth
                                         <tr>
                                             <td>NID Number </td>
                                             <td class="text-capitalize">
@@ -76,9 +99,12 @@
                                                 
                                             </td>
                                         </tr>
+                                        
                                         <tr>
                                             <td colspan="2"><a href="{{ route('user.profile.edit') }}"><button class="btn btn-block btn-primary">Edit Profile</button></a></td>
                                         </tr>
+                                        @endauth
+                                        
                                     </tbody>
                                 </table>
                             </div>
