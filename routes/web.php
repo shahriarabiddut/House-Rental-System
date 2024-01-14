@@ -56,6 +56,7 @@ Route::middleware('userType:tenant')->prefix('user')->name('user.')->group(funct
     Route::get('agreementshow/{id}', [AgreementController::class, 'showt'])->name('agreement.showt');
 
     Route::get('agreements/tenant', [AgreementController::class, 'tenant'])->name('agreement.tenant');
+    Route::get('agreement/{id}/revoke', [AgreementController::class, 'revoke'])->name('agreement.revoke');
 });
 
 require __DIR__ . '/auth.php';

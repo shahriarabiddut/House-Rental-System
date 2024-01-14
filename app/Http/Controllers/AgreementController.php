@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Booking;
 use App\Models\Payment;
 use App\Models\Property;
 use App\Models\Agreement;
@@ -86,6 +87,9 @@ class AgreementController extends Controller
     {
         //
         $data = Agreement::find($id);
+        $data->seen = 0;
+        //
+        $data->save();
         return view('pages.agreement.show', ['data' => $data]);
     }
     public function showt(string $id)
@@ -116,8 +120,26 @@ class AgreementController extends Controller
         }
         $data->amountStatus = 2;
         $data->save();
+        //Property Status Update
+        $dataProperty = Property::find($data->propertyid);
+        $dataProperty->status = 'rent';
+        $dataProperty->save();
+        //Booking Update
+
+        //Get Payment id
+        $dataPayment = Payment::all()->where('service_id', $data->id)->where('tenant_id', $data->tenantid)->first();
+        //
+        $dataBooking = new Booking();
+        $dataBooking->date = date('Y-m-d');
+        $dataBooking->property_id = $data->propertyid;
+        $dataBooking->amount = $data->amount;
+        $dataBooking->payment_id = $dataPayment->id;
+        $dataBooking->tenant_id = $dataPayment->tenant_id;
+        $dataBooking->save();
+        //
         return redirect()->back()->with('success', 'Agreement has been Accepted Successfully!');
     }
+
     public function reject(string $id)
     {
         $data = Agreement::find($id);
@@ -185,6 +207,7 @@ class AgreementController extends Controller
         ]);
         $data->dateofSigning = $request->dateofSigning;
         $data->amountStatus = 1;
+        $data->seen = 1;
         if ($request->has('dateCheckOut')) {
             $data->dateCheckOut = $request->dateCheckOut;
         }
@@ -201,5 +224,42 @@ class AgreementController extends Controller
         $dataPayment->save();
         //
         return redirect()->route('user.profile.view')->with('success', 'Agreement Submitted!');
+    }
+    //Revoking Agreement
+    public function revoke(string $id)
+    {
+        $data = Agreement::find($id);
+        //Get Payment id
+        $dataPayment = Payment::all()->where('service_id', $data->id)->where('tenant_id', $data->tenantid)->first();
+        //
+        if ($data->amountStatus != 2) {
+            return redirect()->back()->with('danger', 'Not Permitted!');
+        }
+        $data->amountStatus = 0;
+        if ($data->dateCheckOut == null) {
+            $data->dateCheckOut = date('Y-m-d');
+            $data->dateofSigning = null;
+        }
+        $data->tenantid = 0;
+        $data->amountStatus = 0;
+        $data->seen = 3;
+        $data->save();
+        //Property Status Update
+        $dataProperty = Property::find($data->propertyid);
+        $dataProperty->status = 'available';
+
+        $dataProperty->save();
+        //Booking Update
+        //
+
+        //
+        $dataBooking = Booking::all()->where('payment_id', $dataPayment->id)->first();
+        $dataBooking->revokeDate = date('Y-m-d');
+        if ($dataBooking->checkOutDate == null) {
+            $dataBooking->checkOutDate = date('Y-m-d');
+        }
+        $dataBooking->save();
+        //
+        return redirect()->back()->with('success', 'Agreement has been Revoked Successfully!');
     }
 }

@@ -56,7 +56,14 @@
                         <tbody>
                             @foreach ($data as $key => $d)
                             <tr>
-                                <td>{{ $key+1 }}</td>
+                                <td>{{ $key+1 }} 
+                                @if ($d->seen==1)
+                                    <span class="bg-danger text-white p-1">NEW</span> 
+                                @endif
+                                @if ($d->seen==3)
+                                    <span class="bg-danger text-white p-1">Revoked</span> 
+                                @endif
+                                </td>
                                 <td>{{ $d->property->title }}</td>
                                 <td>{{ $d->property->type }}</td>
                                 <td>@if ($d->tenantid!='0')

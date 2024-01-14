@@ -104,8 +104,31 @@
                                 <div class="p-3 my-2 mb-2 bg-success text-white text-center">
                                     <p>Contract Made </p>
                                 </div>
-                                @endif
+                            @auth
+                            @if (Auth::user()->type=='tenant')
+                            <div class="p-3 my-2 mb-2 text-center">
+                                <a href="{{ route('user.agreement.revoke',$data->id) }}">
+                                    <div class="bg-danger d-block my-1 px-3 py-2 rounded text-center text-white text-capitalize">
+                                        Revoke Agreement
+                                </div></a>
+                            </div>
+                            @endif
+                            @endauth
+                            @endif
+                            
                         </div>
+                        @if ($data->payment !=null)
+                        @foreach ($data->payment as $item) 
+                        @if ($item->tenant_id == $data->tenantid)
+                        <h5 class="mt-3 mb-1 text-secondary">Payment Details</h5>
+                        <div  class="table-striped font-14 pb-2">
+                            <p>{{ $item->method }} </p>
+                            <p>{{ $item->date }} </p>
+                            
+                        </div>
+                        @endif
+                        @endforeach
+                        @endif
                     </div>
 					
                     <div class="col-lg-4">

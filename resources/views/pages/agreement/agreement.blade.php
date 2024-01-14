@@ -70,6 +70,7 @@
                             <div class="form-group row">
                                 <label class="col-lg-2 col-form-label">Payment Method and Transaction ID</label>
                                 <div class="col-lg-9">
+                                    <p>Example - Bkash - 01833219329 - TransactionID - X0808SD - Amount </p>
                                     <input type="text" class="form-control" name="method" required placeholder="Enter Payment Method and Transaction Id">
                                 </div>
                             </div><!-- ok -->

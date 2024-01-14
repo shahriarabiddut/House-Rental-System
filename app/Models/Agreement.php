@@ -16,4 +16,8 @@ class Agreement extends Model
     {
         return $this->belongsTo(User::class, 'tenantid');
     }
+    public function payment()
+    {
+        return $this->hasMany(Payment::class, 'service_id');
+    }
 }

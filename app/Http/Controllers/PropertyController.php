@@ -129,6 +129,12 @@ class PropertyController extends Controller
     public function edit(string $id)
     {
         //
+        $data = Property::find($id);
+        $user_id = Auth::user()->id;
+        if ($data->uid != $user_id) {
+            return redirect()->route('user.property.index')->with('danger', 'Not Permitted!');
+        }
+        return view('pages.property.edit', ['data' => $data]);
     }
 
     /**
@@ -137,6 +143,51 @@ class PropertyController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $data = Property::find($id);
+        $user_id = Auth::user()->id;
+        if ($data->uid != $user_id) {
+            return redirect()->route('user.property.index')->with('danger', 'Not Permitted!');
+        }
+        $request->validate([
+            'title' => 'required',
+            'ptype' => 'required',
+            'bath' => 'required',
+            'kitc' => 'required',
+            'bed' => 'required',
+            'balc' => 'required',
+            'floor' => 'required',
+            'totalfl' => 'required',
+            'city' => 'required',
+            'state' => 'required',
+            'asize' => 'required',
+            'loc' => 'required',
+            'status' => 'required',
+            'price' => 'required',
+            'hall' => 'required',
+        ]);
+        $data->title = $request->title;
+        $data->type = $request->ptype;
+        $data->bathroom = $request->bath;
+        $data->kitchen = $request->kitc;
+        $data->bedroom = $request->bed;
+        $data->balcony = $request->balc;
+        $data->floor = $request->floor;
+        $data->totalfloor = $request->totalfl;
+        $data->city = $request->city;
+        $data->state = $request->state;
+        $data->size = $request->asize;
+        $data->location = $request->loc;
+        $data->address = $request->loc;
+        $data->hall = $request->hall;
+        if ($request->old_status == 'rent') {
+            $data->status = $request->old_status;
+        } else {
+            $data->status = $request->status;
+        }
+        $data->price = $request->price;
+        $data->save();
+
+        return redirect()->route('user.property.index')->with('success', 'Property Updated Successfully!');
     }
 
     /**

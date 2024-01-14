@@ -17,6 +17,7 @@ return new class extends Migration
             $table->integer('tenant_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('service_id');
             $table->string('method');
+            $table->string('type');
             $table->integer('amount');
             $table->date('date');
             $table->timestamps();
