@@ -70,22 +70,22 @@
     <hr class="sidebar-divider">
     <!-- Heading -->
     <div class="sidebar-heading">
-         Complaints System
+         Contact Messages
     </div>
     <!-- Nav Item Support - Utilities Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link @if (!request()->is('user/support*'))
+        <a class="nav-link @if (!request()->is('user/contact*'))
             collapsed
         @endif" href="#" data-toggle="collapse" data-target="#collapseEight"
             aria-expanded="true" aria-controls="collapseEight">
             <i class="fas fa-ticket-alt"></i>
-            <span>Support</span>
+            <span>Contact Message</span>
         </a>
-        <div id="collapseEight" class="collapse @if(request()->is('user/support*')) show @endif" aria-labelledby="headingUtilities"
+        <div id="collapseEight" class="collapse @if(request()->is('user/contact*')) show @endif" aria-labelledby="headingUtilities"
             data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Support Ticket Management</h6>
-                <a class="collapse-item" href="{{ route('admin.support.index') }}">View Support Tickets</a>
+                <h6 class="collapse-header">Contact Message Management</h6>
+                <a class="collapse-item" href="{{-- route('admin.support.index') --}}">View Messages</a>
             </div>
         </div>
     </li>

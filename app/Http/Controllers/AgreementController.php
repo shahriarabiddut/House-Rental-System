@@ -229,6 +229,9 @@ class AgreementController extends Controller
     public function revoke(string $id)
     {
         $data = Agreement::find($id);
+        if ($data->tenantid != Auth::user()->id || $data->tenantid == 0) {
+            return redirect()->back()->with('danger', 'Not Permitted!');
+        }
         //Get Payment id
         $dataPayment = Payment::all()->where('service_id', $data->id)->where('tenant_id', $data->tenantid)->first();
         //
@@ -250,15 +253,14 @@ class AgreementController extends Controller
 
         $dataProperty->save();
         //Booking Update
-        //
-
-        //
         $dataBooking = Booking::all()->where('payment_id', $dataPayment->id)->first();
-        $dataBooking->revokeDate = date('Y-m-d');
-        if ($dataBooking->checkOutDate == null) {
-            $dataBooking->checkOutDate = date('Y-m-d');
+        if ($dataBooking != null) {
+            $dataBooking->revokeDate = date('Y-m-d');
+            if ($dataBooking->checkOutDate == null) {
+                $dataBooking->checkOutDate = date('Y-m-d');
+            }
+            $dataBooking->save();
         }
-        $dataBooking->save();
         //
         return redirect()->back()->with('success', 'Agreement has been Revoked Successfully!');
     }

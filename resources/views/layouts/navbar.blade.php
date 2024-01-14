@@ -33,14 +33,8 @@
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav mr-auto">
                                 <li class="nav-item dropdown"> <a class="nav-link" href="{{ route('root') }}" role="button" aria-haspopup="true" aria-expanded="false">Home</a></li>
-                                
-                                <li class="nav-item"> <a class="nav-link" href="#">About</a> </li>
-                                
-                                <li class="nav-item"> <a class="nav-link" href="#">Contact</a> </li>										
-                                
+                                <li class="nav-item"> <a class="nav-link" href="{{ route('contact') }}">Contact</a> </li>
                                 <li class="nav-item"> <a class="nav-link" href="{{ route('property') }}">Properties</a> </li>
-
-                                
                                 @auth
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">My Account</a>
@@ -63,7 +57,12 @@
                                 <li class="nav-item"> <a class="nav-link" href="{{route('root').'/chatify' }}">Messages</a> </li>
                                 @endif
                                 @if (Auth::user()->type=='owner')
-                                <li class="nav-item"> <a class="nav-link" href="{{route('user.agreement.index')}}">{{ count(Auth::user()->agreement) }} Agreement Request</a> </li>
+                                <li class="nav-item"> <a class="nav-link" href="{{route('user.agreement.index')}}">
+                                    @if (count(Auth::user()->agreement)==0)
+                                    Agreements
+                                    @else
+                                    {{ count(Auth::user()->agreement) }} Agreement Request
+                                    @endif</a> </li>
                                 @endif
                                 @else
                                 <li class="nav-item"> <a class="nav-link" href="{{ route('login') }}">Login/Register</a> </li>

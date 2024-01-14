@@ -18,6 +18,6 @@ class Agreement extends Model
     }
     public function payment()
     {
-        return $this->hasMany(Payment::class, 'service_id');
+        return $this->hasMany(Payment::class, 'service_id')->orderBy('created_at', 'desc');;
     }
 }

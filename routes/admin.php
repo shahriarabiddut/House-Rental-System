@@ -44,7 +44,6 @@ Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
     Route::get('property/payment/{id}', [PropertyController::class, 'paymentShow'])->name('payment.show');
     Route::resource('property', PropertyController::class);
 
-    //Suport Ticekts View
-    Route::get('support', [SupportController::class, 'adminIndex'])->name('support.index');
-    Route::get('support/{id}', [SupportController::class, 'showAdmin'])->name('support.show');
+    //Revoke Agreement
+    Route::get('agreement/{id}/revoke', [HomeController::class, 'revoke'])->name('agreement.revoke');
 });

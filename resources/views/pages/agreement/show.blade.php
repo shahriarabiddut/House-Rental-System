@@ -104,8 +104,9 @@
                                 <div class="p-3 my-2 mb-2 bg-success text-white text-center">
                                     <p>Contract Made </p>
                                 </div>
+                            @endif
                             @auth
-                            @if (Auth::user()->type=='tenant')
+                            @if (Auth::user()->id==$data->tenantid)
                             <div class="p-3 my-2 mb-2 text-center">
                                 <a href="{{ route('user.agreement.revoke',$data->id) }}">
                                     <div class="bg-danger d-block my-1 px-3 py-2 rounded text-center text-white text-capitalize">
@@ -114,21 +115,50 @@
                             </div>
                             @endif
                             @endauth
-                            @endif
+                            @auth('admin')
+                            <div class="p-3 my-2 mb-2 text-center">
+                                <a href="{{ route('admin.agreement.revoke',$data->id) }}">
+                                    <div class="bg-danger d-block my-1 px-3 py-2 rounded text-center text-white text-capitalize">
+                                        Revoke Agreement
+                                </div></a>
+                            </div>
+                            @endauth
                             
                         </div>
+                        {{-- Payment User --}}
+                        @auth
+                        @if (Auth::user()->id=$data->tenantid || Auth::user()->id=$data->user_id)
                         @if ($data->payment !=null)
-                        @foreach ($data->payment as $item) 
-                        @if ($item->tenant_id == $data->tenantid)
-                        <h5 class="mt-3 mb-1 text-secondary">Payment Details</h5>
-                        <div  class="table-striped font-14 pb-2">
-                            <p>{{ $item->method }} </p>
-                            <p>{{ $item->date }} </p>
-                            
-                        </div>
+                        <h5 class="mt-3 mb-1 text-secondary">Payments</h5>
+                            @foreach ($data->payment as $key => $item) 
+                            @if ($item->tenant_id == $data->tenantid)
+                            <div  class="table-striped font-14 pb-2">
+                                <p>{{ $key+1 }} . {{ $item->method }} </p>
+                                <p>{{ $item->date }} </p>
+                                
+                            </div>
+                            @endif
+                            @endforeach
+                            @endif
                         @endif
-                        @endforeach
-                        @endif
+                        @endauth
+                        {{-- Payment User --}}
+                        {{-- Payment Admin --}}
+                        @auth('admin')
+                            @if ($data->payment !=null)
+                            @foreach ($data->payment as $item) 
+                            @if ($item->tenant_id == $data->tenantid)
+                            <h5 class="mt-3 mb-1 text-secondary">Payment Details</h5>
+                            <div  class="table-striped font-14 pb-2">
+                                <p>{{ $item->method }} </p>
+                                <p>{{ $item->date }} </p>
+                                
+                            </div>
+                            @endif
+                            @endforeach
+                            @endif
+                        @endauth
+                        {{-- Payment Admin --}}
                     </div>
 					
                     <div class="col-lg-4">

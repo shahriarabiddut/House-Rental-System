@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', [HomeController::class, 'home'])->name('root');
+Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 Route::get('/property', [HomeController::class, 'property'])->name('property');
 Route::get('/property/{id}/show', [HomeController::class, 'propertyShow'])->name('property.show');
 Route::post('/property/search', [HomeController::class, 'propertySearch'])->name('property.search');

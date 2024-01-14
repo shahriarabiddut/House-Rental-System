@@ -18,6 +18,11 @@ class HomeController extends Controller
         $data = Property::paginate(4);
         return view('welcome', ['data' => $data]);
     }
+    public function contact()
+    {
+        //
+        return view('contact');
+    }
     public function property()
     {
         //
