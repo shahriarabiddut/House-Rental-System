@@ -1,5 +1,5 @@
 @extends('base')
-@section('title', 'My Property')
+@section('title', ' Property Agreement Requests')
 
 @section('content')
         <!--	Banner   --->
@@ -7,13 +7,13 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
-                        <h2 class="page-name float-left text-white text-uppercase mt-1 mb-0"><b>User Listed Property</b></h2>
+                        <h2 class="page-name float-left text-white text-uppercase mt-1 mb-0"><b>User Listed Property Agreement Requests</b></h2>
                     </div>
                     <div class="col-md-6">
                         <nav aria-label="breadcrumb" class="float-left float-md-right">
                             <ol class="breadcrumb bg-transparent m-0 p-0">
                                 <li class="breadcrumb-item text-white"><a href="{{ route('root') }}">Home</a></li>
-                                <li class="breadcrumb-item active">User Listed Property</li>
+                                <li class="breadcrumb-item active">User Listed Property Agreement Requests</li>
                             </ol>
                         </nav>
                     </div>
@@ -27,7 +27,7 @@
             <div class="container">
                     <div class="row mb-3">
 						<div class="col-lg-12">
-							<h2 class="text-secondary double-down-line text-center">User Listed Property</h2>
+							<h2 class="text-secondary double-down-line text-center">Property Agreement Requests</h2>
                         </div>
                          <!-- Session Messages Starts -->
                         @if(Session::has('success'))
@@ -42,47 +42,45 @@
                         @endif
                         <!-- Session Messages Ends -->
 					</div>
-                    @foreach ($data as $key => $d)
-                    @if ($d->agreement==null)
-                    <div class="row bg-danger text-white p-2 m-2">
-                        Add Agreement Conditions to get published on property page
-                    </div>
-                    @break
-                    @endif
-                    @endforeach
 					<table class="items-list col-lg-12 table-hover" style="border-collapse:inherit;">
                         <thead>
                              <tr  class="bg-dark">
                                 <th class="text-white font-weight-bolder">No.</th>
-                                <th class="text-white font-weight-bolder">Title</th>
+                                <th class="text-white font-weight-bolder">Property</th>
                                 <th class="text-white font-weight-bolder">Type</th>
-                                <th class="text-white font-weight-bolder">Added Date</th>
-								<th class="text-white font-weight-bolder">Status</th>
+                                <th class="text-white font-weight-bolder">Submission Date</th>
+                                <th class="text-white font-weight-bolder">Update Date</th>
+                                <th class="text-white font-weight-bolder">Tenant</th>
 								<th class="text-white font-weight-bolder">Action</th>
-								<th class="text-white font-weight-bolder">Agreement</th>
                              </tr>
                         </thead>
                         <tbody>
                             @foreach ($data as $key => $d)
                             <tr>
-                                <td>{{ $key+1 }}</td>
-                                <td>{{ $d->title }}</td>
-                                <td>{{ $d->type }}</td>
+                                <td>
+                                     @if ($d->status==3)
+                                    <span class="bg-danger text-white p-1">NEW</span> 
+                                @endif {{ $key+1 }}
+                            </td>
+                                <td><a href="{{ route('property.show',$d->property->id) }}">{{ $d->property->title }}</a></td>
+                                <td>{{ $d->property->type }}</td>
                                 <td>{{ $d->created_at }}</td>
-                                <td>{{ $d->status }}</td>
-                                <td><a href="{{ route('property.show',$d->id) }}" class="btn btn-info btn-sm m-1"><i class="fa fa-eye"> View</i></a>
-                                    <a href="{{ route('user.property.edit',$d->id) }}" class="btn btn-primary btn-sm m-1"><i class="fa fa-edit">Edit</i></a>
-                                    <a onclick="return confirm('Are You Sure?')" href="{{ url('user/property/'.$d->id.'/delete') }}" class="btn btn-danger btn-sm m-1"><i class="fa fa-trash">Delete</i></a>
-                                </td>
-                                <td>@if ($d->agreement)
-                                    Agreement Available
+                                <td>
+                                @if ($d->updated_at==$d->created_at)
+                                N/A
                                     @else
-                                    <a href="{{ route('user.agreement.create1',$d->id) }}">
-                                        <div class="bg-info d-block px-3 py-2 rounded text-center text-white text-capitalize">
-                                            Add Agreement Conditions
-                                        </div></a>
+                                    {{ $d->updated_at }}
                                 @endif
-                                      </td>
+                                </td>
+                                <td><a href="{{ route('user.view',$d->tenant->id) }}">{{ $d->tenant->name }}</a></td>
+                                <td>
+                                    <a href="{{ route('user.aRequest.show',$d->id) }}" class="btn btn-info btn-sm m-1"><i class="fa fa-eye"> View </i></a>
+                                @if ($d->status!=2)
+                                    <a href="#" class="btn btn-success btn-sm m-1"><i class="fa fa-check">Approve</i></a>
+                                    <a href="#" class="btn btn-danger btn-sm m-1"><i class="fa fa-trash">Reject</i></a>
+                                @endif
+                                    
+                                </td>
                             </tr>
                             @endforeach
                            

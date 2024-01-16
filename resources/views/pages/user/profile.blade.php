@@ -33,9 +33,11 @@
 <div class="page-wrappers login-body col col-md-8 p-2 text-center bg-subtle">
   <div class="login-wrapper">
     @auth
+    @if (Auth::user()->id == $user->id)
     <h5 class="mt-5 mb-4 text-secondary">My Profile</h5>
     @else
     <h5 class="mt-5 mb-4 text-secondary">User - {{ $user->name }}</h5>
+    @endif
     @endauth
     <!-- Session Messages Starts -->
     @if(Session::has('success'))
@@ -99,10 +101,12 @@
                                                 
                                             </td>
                                         </tr>
-                                        
+                                        @if (Auth::user()->id == $user->id)
                                         <tr>
                                             <td colspan="2"><a href="{{ route('user.profile.edit') }}"><button class="btn btn-block btn-primary">Edit Profile</button></a></td>
                                         </tr>
+                                        @endif
+                                        
                                         @endauth
                                         
                                     </tbody>

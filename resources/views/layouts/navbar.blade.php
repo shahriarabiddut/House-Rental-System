@@ -41,29 +41,45 @@
                                     <ul class="dropdown-menu">
                                         <li class="nav-item"> <a class="nav-link" href="{{ route('user.profile.home') }}">Profile</a> </li>
                                         @auth
-                                        @if (Auth::user()->type!='tenant')
+                                        @if (Auth::user()->type=='owner')
                                         <li class="nav-item"> <a class="nav-link" href="{{ route('user.property.index') }}">My Property</a> </li>
-                                        @else
-                                        <li class="nav-item"> <a class="nav-link" href="{{ route('user.agreement.tenant') }}">My Agreements</a> </li>
                                         @endif
                                         @endauth 
                                         <li class="nav-item"> <a class="nav-link" href="{{ route('logout') }}">Logout</a> </li>	
                                         
                                     </ul>
                                 </li>
-                                @if (count(Auth::user()->unread) != 0)
-                                <li class="nav-item"> <a class="nav-link" href="{{route('root').'/chatify' }}">{{ count(Auth::user()->unread) }} unread messages</a> </li>
-                                @else
-                                <li class="nav-item"> <a class="nav-link" href="{{route('root').'/chatify' }}">Messages</a> </li>
-                                @endif
-                                @if (Auth::user()->type=='owner')
-                                <li class="nav-item"> <a class="nav-link" href="{{route('user.agreement.index')}}">
-                                    @if (count(Auth::user()->agreement)==0)
-                                    Agreements
+                                @auth
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Panel</a>
+                                    <ul class="dropdown-menu">
+                                        @if (count(Auth::user()->unread) != 0)
+                                    <li class="nav-item"> <a class="nav-link" href="{{route('root').'/chatify' }}">{{ count(Auth::user()->unread) }} unread messages</a> </li>
                                     @else
-                                    {{ count(Auth::user()->agreement) }} Agreement Request
-                                    @endif</a> </li>
-                                @endif
+                                    <li class="nav-item"> <a class="nav-link" href="{{route('root').'/chatify' }}">Messages</a> </li>
+                                    @endif
+                                    @if (Auth::user()->type=='owner')
+                                    <li class="nav-item"> <a class="nav-link" href="{{route('user.agreement.index')}}">
+                                        @if (count(Auth::user()->agreement)==0)
+                                        Agreement Contracts
+                                        @else
+                                        {{ count(Auth::user()->agreement) }} Agreement Contract Requests
+                                        @endif</a> </li>
+                                    <li class="nav-item"> <a class="nav-link" href="{{route('user.aRequest.indexOwner')}}">
+                                        @if (count(Auth::user()->agreementRequest)==0)
+                                        Agreement Condition Requests
+                                        @else
+                                        {{ count(Auth::user()->agreementRequest) }} Agreement Condition Requests
+                                        @endif</a> </li>
+                                    @endif
+                                    @if (Auth::user()->type=='tenant')
+                                    <li class="nav-item"> <a class="nav-link" href="{{ route('user.agreement.tenant') }}">My Agreements</a> </li>
+                                    <li class="nav-item"> <a class="nav-link" href="{{ route('user.agreementRequest.index') }}">My Agreement Requests</a> </li>
+                                    @endif
+                                    </ul>
+                                </li>
+                                @endauth
+                                
                                 @else
                                 <li class="nav-item"> <a class="nav-link" href="{{ route('login') }}">Login/Register</a> </li>
                                 @endauth

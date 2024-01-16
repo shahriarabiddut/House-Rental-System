@@ -18,9 +18,18 @@ return new class extends Migration
             $table->integer('propertyid')->references('id')->on('property')->onDelete('cascade');
             $table->date('dateofSigning')->nullable();
             $table->date('dateCheckOut')->nullable();
+            $table->date('dateCheckIn')->nullable();
             $table->integer('amount');
+            $table->integer('security');
             $table->integer('amountStatus')->nullable();
             $table->longText('terms');
+            $table->longText('paymentmethod');
+            $table->longText('facility');
+            $table->longText('sublease');
+            $table->longText('term1');
+            $table->longText('term2');
+            $table->longText('amendment');
+            $table->longText('law');
             $table->timestamps();
         });
     }

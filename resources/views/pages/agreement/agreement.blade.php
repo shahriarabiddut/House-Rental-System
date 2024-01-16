@@ -31,9 +31,13 @@
                                     <input type="number" readonly class="form-control" name="amount" value="{{ $data2->amount }}">
                                 </div>
                             </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label">Security Amount</label>
+                                <div class="col-lg-9">
+                                    <input type="number" readonly class="form-control" name="security" value="{{ $data2->security }}">
+                                </div>
+                            </div>
 
-                        </div>
-                        <div class="col-xl-6">
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label">Property</label>
                                 <div class="col-lg-9">
@@ -41,8 +45,7 @@
                                     <input type="hidden" readonly class="form-control" name="property_id" required value="{{ $data->id }}">
                                     <input type="hidden" readonly class="form-control" name="type" required value="advance">
                                 </div>
-                            </div><!-- ok -->
-
+                            </div>
                         </div><!-- ok -->
                         
                         <div class="col-xl-6">
@@ -54,24 +57,28 @@
                                 </div>
                             </div>
 
-                        </div>
-                        <div class="col-xl-6">
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label">Probable Check In Date</label>
+                                <div class="col-lg-9">
+                                    <input type="date" required class="form-control" name="dateCheckIn">
+                                </div>
+                            </div>
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label">Probable Check Out Date</label>
                                 <div class="col-lg-9">
-                                    <input type="date" class="form-control" name="dateCheckOut">
+                                    <input type="date" required class="form-control" name="dateCheckOut">
                                 </div>
-                            </div><!-- ok -->
+                            </div>
 
                         </div><!-- ok -->
                         
                         <div class="col-xl-12">
                             <hr>
                             <div class="form-group row">
-                                <label class="col-lg-2 col-form-label">Payment Method and Transaction ID</label>
+                                <label class="col-lg-2 col-form-label">Payment Method </label>
                                 <div class="col-lg-9">
-                                    <p>Example - Bkash - 01833219329 - TransactionID - X0808SD - Amount </p>
-                                    <input type="text" class="form-control" name="method" required placeholder="Enter Payment Method and Transaction Id">
+                                    <p>{{ $data2->paymentmethod }} </p>
+                                    <input type="text" class="form-control" name="method" required placeholder="Enter Payment Proof">
                                 </div>
                             </div><!-- ok -->
                             <hr>

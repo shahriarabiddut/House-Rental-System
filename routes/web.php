@@ -1,10 +1,12 @@
 <?php
 
 use App\Http\Controllers\AgreementController;
+use App\Http\Controllers\AgreementRequestController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PropertyController;
+use App\Models\AgreementRequest;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -28,6 +30,7 @@ Route::get('user', [ProfileController::class, 'index'])->middleware(['auth'])->n
 // Route::get('user', [ProfileController::class, 'index'])->middleware(['auth'])->middleware(['auth', 'verified'])->name('user.dashboard');
 // })->->name('dashboard');
 Route::get('/userProfile/{id}', [ProfileController::class, 'viewUser'])->name('user.view');
+Route::get('/userProfileJ/{id}', [ProfileController::class, 'viewUserJ'])->name('user.viewJson');
 
 Route::middleware('auth')->prefix('user')->name('user.')->group(function () {
     Route::get('/myprofile', [ProfileController::class, 'home'])->name('profile.home');
@@ -50,15 +53,30 @@ Route::middleware('userType:owner')->prefix('user')->name('user.')->group(functi
     Route::resource('agreement', AgreementController::class);
     //
     Route::get('agreement/{id}/makeAgreement/{email}', [AgreementController::class, 'makeAgreement'])->name('agreement.makeAgreement');
+
+    //Agreement Reequest 
+
+    Route::get('aRequest/{id}/accept', [AgreementRequestController::class, 'accept'])->name('aRequest.accept');
+    Route::get('aRequest/{id}/reject', [AgreementRequestController::class, 'reject'])->name('aRequest.reject');
+    Route::get('aRequest/{id}/show', [AgreementRequestController::class, 'showOwner'])->name('aRequest.show');
+    Route::get('aRequest/', [AgreementRequestController::class, 'indexOwner'])->name('aRequest.indexOwner');
 });
 Route::middleware('userType:tenant')->prefix('user')->name('user.')->group(function () {
     //tenant Agreement Routes
     Route::put('agreements/storeAgreement', [AgreementController::class, 'storeAgreement'])->name('agreement.storeAgreement');
     Route::get('agreement/{id}/signAgreement', [AgreementController::class, 'signAgreement'])->name('agreement.signAgreement');
+    Route::get('agreement/{id}/signAgreement', [AgreementController::class, 'signAgreement2'])->name('agreement.signAgreement2');
     Route::get('agreementshow/{id}', [AgreementController::class, 'showt'])->name('agreement.showt');
 
     Route::get('agreements/tenant', [AgreementController::class, 'tenant'])->name('agreement.tenant');
     Route::get('agreement/{id}/revoke', [AgreementController::class, 'revoke'])->name('agreement.revoke');
+
+    // Agreement Request
+    Route::get('agreementRequest/{id}/delete', [AgreementRequestController::class, 'destroy'])->name('agreement.request.delete');
+    Route::get('agreementRequest/{id}/add', [AgreementRequestController::class, 'create'])->name('agreementRequest.create');
+    Route::get('agreementRequest/{id}/show', [AgreementRequestController::class, 'show'])->name('agreementRequest.show');
+    Route::get('agreementRequest/', [AgreementRequestController::class, 'index'])->name('agreementRequest.index');
+    Route::post('agreementRequest/added', [AgreementRequestController::class, 'store'])->name('agreementRequest.store');
 });
 
 require __DIR__ . '/auth.php';

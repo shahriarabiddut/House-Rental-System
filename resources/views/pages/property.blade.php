@@ -41,13 +41,14 @@
 					<div class="col-lg-8">
                         <div class="row">
 					@foreach ($data as $d)
+                    @if($d->status=='available')
                     @if($d->agreement)
                             <div class="col-md-6">
                                 <div class="featured-thumb hover-zoomer mb-4">
                                 <a href="{{ route('property.show',$d->id) }}">
                                     <div class="overlay-black overflow-hidden position-relative"> <img src="{{ asset('storage/'.$d->pimage) }}" alt="pimage">
                                         
-                                        @if($d->status=='available')
+                                        {{-- @if($d->status=='available')
                                         <div class="sale bg-success text-white">
                                         Available for Rent
                                         </div>
@@ -55,7 +56,7 @@
                                         <div class="sale bg-danger text-white">
                                             On Rent
                                         </div>
-                                        @endif
+                                        @endif --}}
                                         
                                         <div class="price text-primary text-capitalize">Tk.{{ $d->price}}<span class="text-white">{{ $d->bedroom}} BHK</span></div>
                                         
@@ -72,6 +73,7 @@
                                     </div>
                                 </div>
                             </div>
+                            @endif
                             @endif
                     @endforeach
                           <div class="col-md-12">

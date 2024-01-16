@@ -70,14 +70,23 @@ class AgreementController extends Controller
         ]);
         $data->terms = $request->terms;
         $data->amount = $request->amount;
+        $data->security = $request->security;
         $data->propertyid = $request->property_id;
         $data->user_id = Auth::user()->id;
         $data->tenantid = 0;
         $data->amountStatus = 0;
+        $data->seen = 0;
+        $data->paymentmethod = $request->paymentmethod;
+        $data->facility = $request->facility;
+        $data->sublease = $request->sublease;
+        $data->term1 = $request->term1;
+        $data->term2 = $request->term2;
+        $data->amendment = $request->amendment;
+        $data->law = $request->law;
         //
         $data->save();
 
-        return redirect()->route('user.property.index')->with('success', 'Agreement added to Property!');
+        return redirect()->route('user.property.index')->with('success', 'Agreement Conditons added to Property!');
     }
 
     /**
@@ -96,7 +105,10 @@ class AgreementController extends Controller
     {
         //
         $data = Agreement::find($id);
-        return view('pages.agreement.show', ['data' => $data]);
+        if ($data->tenantid == Auth::user()->id || $data->tenantid == 0) {
+            return view('pages.agreement.show', ['data' => $data]);
+        }
+        return redirect()->back()->with('danger', 'Not Permitted!');
     }
 
     /**
@@ -149,7 +161,7 @@ class AgreementController extends Controller
         $data->tenantid = 0;
         $data->amountStatus = 0;
         $data->save();
-        return redirect()->back()->with('success', 'Agreement has been rejected Successfully!');
+        return redirect()->back()->with('danger', 'Agreement has been rejected Successfully!');
     }
     //Make Agreement
     public function makeAgreement(string $id, string $email)
@@ -197,10 +209,32 @@ class AgreementController extends Controller
             return redirect()->route('user.profile.view')->with('danger', 'Not Permitted!');
         }
     }
+    public function signAgreement2(string $id)
+    {
+        //Check Property 
+        $data2 = Agreement::all()->where('id', $id)->first();
+        $data = Property::all()->where('id', $data2->propertyid)->first();
+        if ($data != null) {
+            if ($data2->tenantid == '0') {
+                return redirect()->route('user.profile.view')->with('danger', 'Sorry Not Permitted!');
+            }
+            if ($data2->tenantid == Auth::user()->id) {
+                if ($data2->dateofSigning == null) {
+                    return view('pages.agreement.agreement', ['data' => $data, 'data2' => $data2]);
+                } else {
+                    return redirect()->route('user.profile.view')->with('danger', 'Not Permitted !Already Signed!');
+                }
+            }
+        } else {
+            return redirect()->route('user.profile.view')->with('danger', 'Not Permitted!');
+        }
+    }
     public function storeAgreement(Request $request)
     {
         $data = Agreement::all()->where('propertyid', $request->property_id)->first();
         $request->validate([
+            'dateCheckOut' => 'required',
+            'dateCheckIn' => 'required',
             'dateofSigning' => 'required',
             'property_id' => 'required',
             'method' => 'required',
@@ -208,16 +242,15 @@ class AgreementController extends Controller
         $data->dateofSigning = $request->dateofSigning;
         $data->amountStatus = 1;
         $data->seen = 1;
-        if ($request->has('dateCheckOut')) {
-            $data->dateCheckOut = $request->dateCheckOut;
-        }
+        $data->dateCheckIn = $request->dateCheckIn;
+        $data->dateCheckOut = $request->dateCheckOut;
         $data->save();
         //Payment Method Apply
         $dataPayment = new Payment();
         $dataPayment->property_id = $request->property_id;
         $dataPayment->tenant_id = Auth::user()->id;
         $dataPayment->method = $request->method;
-        $dataPayment->amount = $data->amount;
+        $dataPayment->amount = $data->amount + $data->security;
         $dataPayment->date = $data->dateofSigning;
         $dataPayment->type = 'agreement';
         $dataPayment->service_id = $data->id;

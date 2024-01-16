@@ -4,7 +4,14 @@
         <label><span class="fas fa-plus-circle"></span><input disabled='disabled' type="file" class="upload-attachment" name="file" accept=".{{implode(', .',config('chatify.attachments.allowed_images'))}}, .{{implode(', .',config('chatify.attachments.allowed_files'))}}" /></label>
         <button class="emoji-button"></span><span class="fas fa-smile"></button>
             @if (Auth::user()->type=='owner')
-            <button onclick="openModal()">Send Agreement {{  Auth::user()->id }}</button>
+            <button onclick="openModal()" style="
+            color: wheat;
+            background-color: black;
+            padding: 1%;
+            border-radius: 10px;
+            font-size: 10px;
+        "
+        >Send Agreement</button>
             @endif
         <textarea readonly='readonly' id="outputField" name="message" class="m-send app-scroll" placeholder="Type a message.."></textarea>
         <button disabled='disabled' class="send-button"><span class="fas fa-paper-plane"></span></button>

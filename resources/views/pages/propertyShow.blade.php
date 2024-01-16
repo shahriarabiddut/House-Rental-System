@@ -26,20 +26,20 @@
         <div class="full-row">
             <div class="container">
                 <div class="row"> 
-						 <!-- Session Messages Starts -->
-                         @if(Session::has('success'))
-                         <div class="p-3 mb-2 bg-success text-white">
-                             <p>{{ session('success') }} </p>
-                         </div>
-                         @endif
-                         @if(Session::has('danger'))
-                         <div class="p-3 mb-2 bg-danger text-white">
-                             <p>{{ session('danger') }} </p>
-                         </div>
-                         @endif
-                         <!-- Session Messages Ends -->
+						
                     <div class="col-lg-8">
-
+ <!-- Session Messages Starts -->
+ @if(Session::has('success'))
+ <div class="p-3 mb-2 bg-success text-white">
+     <p>{{ session('success') }} </p>
+ </div>
+ @endif
+ @if(Session::has('danger'))
+ <div class="p-3 mb-2 bg-danger text-white">
+     <p>{{ session('danger') }} </p>
+ </div>
+ @endif
+ <!-- Session Messages Ends -->
                         <div class="row">
                             <div class="col-md-12">
                                 <div id="single-property" style="width:1200px; height:700px; margin:30px auto 50px;"> 
@@ -161,13 +161,10 @@
                             @else
                                 
                             @endif
-
-                        @else
-
                         @endauth
                         </div>
                         @auth
-                        @if (Auth::user()->type == 'tenant' )
+                        @if (Auth::user()->type == 'tenant' || $data->status == 'available')
                         <div class="sidebar-widget mt-5">
                             @if($data->status=='available')
                                 <h4 class="double-down-line-left text-secondary position-relative pb-4 mb-4">Available for Rent</h4>
@@ -175,6 +172,12 @@
                                     <div class="bg-success d-block px-3 py-2 rounded text-center text-white text-capitalize">
                                         Contact For Rent
                                     </div></a>
+                                    <hr>
+                                    <a href="{{ route('user.agreement.showt',$data->agreement->id) }}">
+                                        <div class="bg-info d-block px-3 py-2 rounded text-center text-white text-capitalize">
+                                            View Agreement
+                                        </div></a>
+                                        <br>
                             @else
                                 <h4 class="double-down-line-left text-secondary position-relative pb-4 mb-4">Not Available for Rent</h4>
                                 <div class="bg-warning d-block px-3 py-2 rounded text-center text-white text-capitalize">

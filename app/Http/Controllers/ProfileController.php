@@ -25,6 +25,11 @@ class ProfileController extends Controller
         $user = User::find($id);
         return view('pages.user.profile', ['user' => $user]);
     }
+    public function viewUserJ(string $id)
+    {
+        $data = User::select('name', 'email', 'mobile')->where('id', $id)->first();
+        return response()->json($data);
+    }
     public function view(Request $request): View
     {
 

@@ -42,13 +42,7 @@
                              <p>{{ session('danger') }} </p>
                          </div>
                          @endif
-                            <h5 class="mt-3 mb-1 text-secondary">Agreement Terms</h5>
-                            <div  class="table-striped font-14 pb-2">
-                                <p>
-                                    {!! $data->terms !!}
-                                </p>
-                                
-                            </div>
+                            
                             <h5 class="mt-2 mb-4 text-secondary">Agreement Details </h5>
                             <div  class="table-striped font-14 pb-2">
                                 <table class="w-100"> 
@@ -81,10 +75,10 @@
                                         <tr> 
                                             <td>Check In Date :</td>
                                             <td class="text-capitalize">
-                                            @if ($data->dateofSigning==null)
+                                            @if ($data->dateCheckOut==null)
                                                 N/A
                                                 @else
-                                                {{ $data->dateofSigning  }}
+                                                {{ $data->dateCheckIn  }}
                                             @endif
                                             </td>
                                             <td>Check Out Date :</td>
@@ -123,11 +117,9 @@
                                 </div></a>
                             </div>
                             @endauth
-                            
-                        </div>
-                        {{-- Payment User --}}
+                            {{-- Payment User --}}
                         @auth
-                        @if (Auth::user()->id=$data->tenantid || Auth::user()->id=$data->user_id)
+                        @if (Auth::user()->id==$data->tenantid || Auth::user()->id==$data->user_id)
                         @if ($data->payment !=null)
                         <h5 class="mt-3 mb-1 text-secondary">Payments</h5>
                             @foreach ($data->payment as $key => $item) 
@@ -159,6 +151,62 @@
                             @endif
                         @endauth
                         {{-- Payment Admin --}}
+                        <h5 class="mt-3 mb-1 text-secondary">PAYMENT TERMS</h5>
+                        <div  class="table-striped font-14 pb-2">
+                            <p>
+                                The rental amount for the term of this Agreement is {{ $data->property->price }} Taka.Rental payments shall be made by Tenant.The reservation fee is {{ $data->amount }} Taka. This amount is non-refundable incase of reservation cancellation. If there is no reservation cancellation, thisamount shall be set off from the total rental amount.
+                            </p>
+                            <p>
+                                <h5>Payment Method</h5>
+                                <p> {{ $data->paymentmethod }} </p>
+                            </p>
+                        </div>
+                        <h5 class="mt-3 mb-1 text-secondary">SECURITY DEPOSIT</h5>
+                        <div  class="table-striped font-14 pb-2">
+                            <p>
+                                The tenant agrees to pay a security deposit of {{ $data->security }}.This amount shall be refunded after the Tenant leaves the property andan inspection made by the Landlord. This security deposit shall be used tocover any damage to the property when necessary.
+                            </p>
+                        </div>
+                        <h5 class="mt-3 mb-1 text-secondary">FACILITY</h5>
+                        <div  class="table-striped font-14 pb-2">
+                            <p>
+                                {{ $data->facility }} 
+                            </p>
+                        </div>
+                        <h5 class="mt-3 mb-1 text-secondary">SUBLEASE</h5>
+                        <div  class="table-striped font-14 pb-2">
+                            <p>
+                                {{ $data->sublease }} 
+                            </p>
+                        </div>
+                        <h5 class="mt-3 mb-1 text-secondary">MAINTENANCE, PEACE/ORDER, AND OTHEROBLIGATIONS</h5>
+                        <div  class="table-striped font-14 pb-2">
+                            <p>
+                                {{ $data->term1 }} 
+                            </p>
+                        </div>
+                        <h5 class="mt-3 mb-1 text-secondary">INDEMNIFICATION</h5>
+                        <div  class="table-striped font-14 pb-2">
+                            <p>
+                                {{ $data->term2 }} 
+                            </p>
+                        </div>
+                        <h5 class="mt-3 mb-1 text-secondary">AMENDMENT</h5>
+                        <div  class="table-striped font-14 pb-2">
+                            <p>
+                                {{ $data->amendment }} 
+                            </p>
+                        </div>
+                        <h5 class="mt-3 mb-1 text-secondary">GOVERNING LAW</h5>
+                        <div  class="table-striped font-14 pb-2">
+                            <p>
+                                {{ $data->law }} 
+                            </p>
+                        </div>
+
+                        </div>
+                        
+                        
                     </div>
 					
                     <div class="col-lg-4">
@@ -174,7 +222,15 @@
                                     View Property
                                 </div></a>
                                 @auth
+                                @if (Auth::user()->type=='tenant' && $data->tenantid==0)
+                                <a href="{{ route('user.agreementRequest.create',$data->id) }}">
+                                    <div class="bg-info d-block px-3 py-2 rounded text-center text-white text-capitalize">
+                                        Add Rent Request With Conditions
+                                    </div></a>
+                                    
+                                @endif
                                 @if (Auth::user()->type!='tenant')
+                                
                                 @if ($data->amountStatus!=2)
                                 <hr>
                                 <h4 class="double-down-line-left text-secondary position-relative pb-4 mb-4">Action</h4>
@@ -201,11 +257,10 @@
                             </div>
                             @endif
                         <hr>
+                        @if ($data->tenantid!=0)
                         <div class="sidebar-widget mt-5 mb-5">
                             <h5 class="mt-5 mb-4 text-secondary double-down-line-left position-relative">Contact Tenant</h5>
-                            @if ($data->tenantid==null)
                                                 N/A
-                                                @else
                                             
                             <div class="agent-contact pt-60">
                                 <div class="row">
@@ -222,8 +277,9 @@
                                      
                                 </div>
                             </div>
-                            @endif
                         </div>
+                            <hr>
+                            @endif
                         
                     </div>
                 </div>

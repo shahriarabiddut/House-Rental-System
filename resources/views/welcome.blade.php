@@ -80,6 +80,8 @@
                             <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home">
                                 <div class="row">
                                     @foreach ($data as $key => $property)
+                                    @if ($property->status=='available') 
+                                                
                                     <div class="col-md-6 col-lg-4">
                                         <div class="featured-thumb hover-zoomer mb-4">
                                             <a href="{{ route('property.show',$property->id) }}">
@@ -97,11 +99,11 @@
                                                 @if ($days<8)
                                                 <div class="featured bg-success text-white">New</div>
                                                 @endif
-                                                <div class="sale bg-success text-white text-capitalize">
+                                                {{-- <div class="sale bg-success text-white text-capitalize">
                                                 @if ($property->status=='available') Available for Rent
                                                 @else
                                                     On Rent
-                                                @endif</div>
+                                                @endif</div> --}}
                                                 <div class="price text-primary"><b> {{ $property->price }} tk </b><span class="text-white">{{ $property->bedroom }} BHK </span></div>
                                             </div>
                                         </a>
@@ -126,6 +128,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    @endif
                                     @endforeach
                                     <div class="col-md-12">
                                         <nav aria-label="Page navigation">

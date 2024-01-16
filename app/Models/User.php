@@ -45,4 +45,8 @@ class User extends Authenticatable  implements MustVerifyEmail
     {
         return $this->hasMany(Agreement::class)->where('tenantid', '!=', '0')->where('amountStatus', '==', '1');
     }
+    public function agreementRequest()
+    {
+        return $this->hasMany(AgreementRequest::class, 'owner_id')->where('status', '3');
+    }
 }
