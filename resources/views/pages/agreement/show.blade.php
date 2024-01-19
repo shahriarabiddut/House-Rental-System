@@ -99,7 +99,7 @@
                                     <p>Contract Made </p>
                                 </div>
                             @endif
-                            @auth
+                            {{-- @auth
                             @if (Auth::user()->id==$data->tenantid)
                             <div class="p-3 my-2 mb-2 text-center">
                                 <a href="{{ route('user.agreement.revoke',$data->id) }}">
@@ -108,7 +108,7 @@
                                 </div></a>
                             </div>
                             @endif
-                            @endauth
+                            @endauth --}}
                             @auth('admin')
                             <div class="p-3 my-2 mb-2 text-center">
                                 <a href="{{ route('admin.agreement.revoke',$data->id) }}">
@@ -127,7 +127,9 @@
                             <div  class="table-striped font-14 pb-2">
                                 <p>{{ $key+1 }} . {{ $item->method }} </p>
                                 <p>{{ $item->date }} </p>
-                                
+                                @if ($item->paymentproof!=null)
+                                    <img src="{{ asset('storage/'.$item->paymentproof) }}" alt="Payment Proof">
+                                @endif
                             </div>
                             @endif
                             @endforeach
@@ -231,7 +233,7 @@
                                 @endif
                                 @if (Auth::user()->type!='tenant')
                                 
-                                @if ($data->amountStatus!=2)
+                                @if ($data->amountStatus==1)
                                 <hr>
                                 <h4 class="double-down-line-left text-secondary position-relative pb-4 mb-4">Action</h4>
                                 @if ($data->tenantid!=0)

@@ -68,7 +68,7 @@
                                 <td>{{ $d->updated_at }}</td>
                                 <td>
                                     @if ($d->dateofSigning!=null)
-                                    <a href="{{ route('user.agreement.showt',$d->property->id) }}" class="btn btn-info btn-sm"><i class="fa fa-eye"> View Agreement </i></a>
+                                    <a href="{{ route('user.agreement.showt',$d->id) }}" class="btn btn-info btn-sm"><i class="fa fa-eye"> View Agreement </i></a>
                                     @else
                                     <a href="{{ route('user.agreement.signAgreement',$d->property->id) }}" class="btn btn-info btn-sm"><i class="fa fa-eye"> Sign Agreement </i></a>
                                 @endif

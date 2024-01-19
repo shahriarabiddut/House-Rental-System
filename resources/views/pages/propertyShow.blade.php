@@ -161,11 +161,11 @@
                             @else
                                 
                             @endif
-                        @endauth
+                            @endauth
                         </div>
-                        @auth
-                        @if (Auth::user()->type == 'tenant' || $data->status == 'available')
                         <div class="sidebar-widget mt-5">
+                        @auth
+                        @if (Auth::user()->type == 'tenant' && $data->status == 'available')
                             @if($data->status=='available')
                                 <h4 class="double-down-line-left text-secondary position-relative pb-4 mb-4">Available for Rent</h4>
                                 <a href="{{ route('root').'/chatify/'.$data->owner->id }}">
@@ -173,20 +173,37 @@
                                         Contact For Rent
                                     </div></a>
                                     <hr>
+                                    @if($data->agreement!=null)
                                     <a href="{{ route('user.agreement.showt',$data->agreement->id) }}">
                                         <div class="bg-info d-block px-3 py-2 rounded text-center text-white text-capitalize">
                                             View Agreement
                                         </div></a>
                                         <br>
+                                        @endif
                             @else
                                 <h4 class="double-down-line-left text-secondary position-relative pb-4 mb-4">Not Available for Rent</h4>
                                 <div class="bg-warning d-block px-3 py-2 rounded text-center text-white text-capitalize">
                                     On Rent
                                 </div>
                             @endif
-                        </div>
+                        
                         @endif
+                        @else
+                        @if($data->status=='available')
+                                <h4 class="double-down-line-left text-secondary position-relative pb-4 mb-4">Available for Rent</h4>
+                                <a href="{{ route('root').'/chatify/'.$data->owner->id }}">
+                                    <div class="bg-success d-block px-3 py-2 rounded text-center text-white text-capitalize">
+                                        Contact For Rent
+                                    </div></a>
+                                    <hr>
+                                    @else
+                                <h4 class="double-down-line-left text-secondary position-relative pb-4 mb-4">Not Available for Rent</h4>
+                                <div class="bg-warning d-block px-3 py-2 rounded text-center text-white text-capitalize">
+                                    On Rent
+                                </div>
+                            @endif
                         @endauth
+                    </div>
                         <div class="sidebar-widget mt-5">
                             <h5 class="mt-5 mb-4 text-secondary double-down-line-left position-relative">Contact Agent</h5>
                             <div class="agent-contact pt-60">

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->date('dateCheckOut')->nullable();
             $table->date('dateCheckIn')->nullable();
             $table->integer('amount');
+            $table->integer('seen');
             $table->integer('security');
             $table->integer('amountStatus')->nullable();
             $table->longText('terms');

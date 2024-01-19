@@ -77,11 +77,18 @@
                             <div class="form-group row">
                                 <label class="col-lg-2 col-form-label">Payment Method </label>
                                 <div class="col-lg-9">
+                                    <p>Payable Amount - {{ $data2->amount + $data2->security }} </p>
                                     <p>{{ $data2->paymentmethod }} </p>
                                     <input type="text" class="form-control" name="method" required placeholder="Enter Payment Proof">
                                 </div>
                             </div><!-- ok -->
                             <hr>
+                            <div class="form-group row">
+                                <label class="col-lg-2 col-form-label">Payment Proof Photo </label>
+                                <div class="col-lg-9">
+                                    <input type="file" class="form-control" name="paymentproof">
+                                </div>
+                            </div><!-- ok -->
                         </div>
                     </div>
                     

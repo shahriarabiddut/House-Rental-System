@@ -250,6 +250,12 @@ class AgreementController extends Controller
         $dataPayment->property_id = $request->property_id;
         $dataPayment->tenant_id = Auth::user()->id;
         $dataPayment->method = $request->method;
+
+        if ($request->hasFile('paymentproof')) {
+            $imgpath = $request->file('paymentproof')->store('PaymentProofPhoto', 'public');
+            $dataPayment->paymentproof = $imgpath;
+        }
+
         $dataPayment->amount = $data->amount + $data->security;
         $dataPayment->date = $data->dateofSigning;
         $dataPayment->type = 'agreement';
