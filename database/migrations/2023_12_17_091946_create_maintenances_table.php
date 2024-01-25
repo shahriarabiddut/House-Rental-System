@@ -14,9 +14,11 @@ return new class extends Migration
         Schema::create('maintenances', function (Blueprint $table) {
             $table->id();
             $table->integer('status');
-            $table->string('tasktitle');
-            $table->string('taskdetails');
+            $table->longText('task');
+            $table->longText('reply')->nullable();
             $table->string('property_id')->references('id')->on('properties')->onDelete('cascade');
+            $table->string('tenant_id')->references('id')->on('users')->onDelete('cascade');
+            $table->string('owner_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

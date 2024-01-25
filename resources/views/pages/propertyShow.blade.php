@@ -144,7 +144,7 @@
                                 @if($data->agreement)
                                 <a href="{{ route('user.agreement.show',$data->agreement->id) }}">
                                     <div class="bg-info d-block px-3 py-2 rounded text-center text-white text-capitalize">
-                                        View Agreement
+                                        View Agreement Conditions
                                     </div></a>
                                     <br>
                                     @if ($data->agreement->tenantid==null)
@@ -155,7 +155,7 @@
                                 @else
                                     <a href="{{ route('user.agreement.create1',$data->id) }}">
                                         <div class="bg-info d-block px-3 py-2 rounded text-center text-white text-capitalize">
-                                            Add Agreement
+                                            Add Agreement Conditions
                                         </div></a>
                                 @endif
                             @else
@@ -176,7 +176,7 @@
                                     @if($data->agreement!=null)
                                     <a href="{{ route('user.agreement.showt',$data->agreement->id) }}">
                                         <div class="bg-info d-block px-3 py-2 rounded text-center text-white text-capitalize">
-                                            View Agreement
+                                            View Agreement Conditions
                                         </div></a>
                                         <br>
                                         @endif

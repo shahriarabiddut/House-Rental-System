@@ -49,7 +49,14 @@
                                     <tbody>
                                         <tr>
                                             <td>Amount :</td>
-                                            <td class="text-capitalize">{{ $data->amount }}</td>
+                                            <td class="text-capitalize">
+                                                @if ($data->amountStatus=='0')
+                                                {{ $data->amount  }} - Agreement Fee <br>
+                                                {{ $data->security  }} - Security Fee
+                                            @else
+                                                {{ $data->amount+$data->security  }}
+                                            @endif
+                                            </td>
                                             <td>Amount Status :</td>
                                             <td class="text-capitalize">
                                             @if ($data->amountStatus=='0')
@@ -224,6 +231,13 @@
                                     View Property
                                 </div></a>
                                 @auth
+                                @if (Auth::user()->type=='tenant' && $data->tenantid!= 0)
+                                <a href="{{ route('user.maintenance.create',$data->id) }}">
+                                    <div class="bg-info d-block px-3 py-2 rounded text-center text-white text-capitalize">
+                                        Add Maintenance Request With
+                                    </div></a>
+                                    
+                                @endif
                                 @if (Auth::user()->type=='tenant' && $data->tenantid==0)
                                 <a href="{{ route('user.agreementRequest.create',$data->id) }}">
                                     <div class="bg-info d-block px-3 py-2 rounded text-center text-white text-capitalize">

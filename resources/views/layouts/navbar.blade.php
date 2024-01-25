@@ -71,10 +71,17 @@
                                         @else
                                         {{ count(Auth::user()->agreementRequest) }} Agreement Condition Requests
                                         @endif</a> </li>
+                                        <li class="nav-item"> <a class="nav-link" href="{{route('user.maintenance.index2')}}">
+                                            @if (count(Auth::user()->maintenance)==0)
+                                            Maintenance Requests
+                                            @else
+                                            {{ count(Auth::user()->maintenance) }} Maintenance Requests
+                                            @endif</a> </li>
                                     @endif
                                     @if (Auth::user()->type=='tenant')
                                     <li class="nav-item"> <a class="nav-link" href="{{ route('user.agreement.tenant') }}">My Agreements</a> </li>
                                     <li class="nav-item"> <a class="nav-link" href="{{ route('user.agreementRequest.index') }}">My Agreement Requests</a> </li>
+                                    <li class="nav-item"> <a class="nav-link" href="{{ route('user.maintenance.index') }}">My Maintenance Requests</a> </li>
                                     @endif
                                     </ul>
                                 </li>

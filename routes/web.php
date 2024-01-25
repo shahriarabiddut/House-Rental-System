@@ -3,6 +3,7 @@
 use App\Http\Controllers\AgreementController;
 use App\Http\Controllers\AgreementRequestController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MaintenanceController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PropertyController;
@@ -60,6 +61,11 @@ Route::middleware('userType:owner')->prefix('user')->name('user.')->group(functi
     Route::get('aRequest/{id}/reject', [AgreementRequestController::class, 'reject'])->name('aRequest.reject');
     Route::get('aRequest/{id}/show', [AgreementRequestController::class, 'showOwner'])->name('aRequest.show');
     Route::get('aRequest/', [AgreementRequestController::class, 'indexOwner'])->name('aRequest.indexOwner');
+    //Maintenance Request
+    Route::get('maintenance/{id}/showo', [MaintenanceController::class, 'show2'])->name('maintenance.show2');
+    Route::get('maintenanceo/', [MaintenanceController::class, 'index2'])->name('maintenance.index2');
+    Route::get('maintenance/{id}/reply', [MaintenanceController::class, 'edit'])->name('maintenance.edit');
+    Route::put('maintenance/update', [MaintenanceController::class, 'update'])->name('maintenance.update');
 });
 Route::middleware('userType:tenant')->prefix('user')->name('user.')->group(function () {
     //tenant Agreement Routes
@@ -77,6 +83,12 @@ Route::middleware('userType:tenant')->prefix('user')->name('user.')->group(funct
     Route::get('agreementRequest/{id}/show', [AgreementRequestController::class, 'show'])->name('agreementRequest.show');
     Route::get('agreementRequest/', [AgreementRequestController::class, 'index'])->name('agreementRequest.index');
     Route::post('agreementRequest/added', [AgreementRequestController::class, 'store'])->name('agreementRequest.store');
+    // Agreement Request
+    Route::get('maintenance/{id}/delete', [MaintenanceController::class, 'destroy'])->name('maintenance.delete');
+    Route::get('maintenance/{id}/create', [MaintenanceController::class, 'create'])->name('maintenance.create');
+    Route::get('maintenance/{id}/show', [MaintenanceController::class, 'show'])->name('maintenance.show');
+    Route::get('maintenance/', [MaintenanceController::class, 'index'])->name('maintenance.index');
+    Route::post('maintenance/post', [MaintenanceController::class, 'store'])->name('maintenance.store');
 });
 
 require __DIR__ . '/auth.php';
