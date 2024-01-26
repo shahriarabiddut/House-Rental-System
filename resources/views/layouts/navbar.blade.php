@@ -33,6 +33,7 @@
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav mr-auto">
                                 <li class="nav-item dropdown"> <a class="nav-link" href="{{ route('root') }}" role="button" aria-haspopup="true" aria-expanded="false">Home</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="{{ route('about') }}">About</a> </li>
                                 <li class="nav-item"> <a class="nav-link" href="{{ route('contact') }}">Contact</a> </li>
                                 <li class="nav-item"> <a class="nav-link" href="{{ route('property') }}">Properties</a> </li>
                                 @auth
@@ -72,14 +73,15 @@
                                         {{ count(Auth::user()->agreementRequest) }} Agreement Condition Requests
                                         @endif</a> </li>
                                         <li class="nav-item"> <a class="nav-link" href="{{route('user.maintenance.index2')}}">
-                                            @if (count(Auth::user()->maintenance)==0)
-                                            Maintenance Requests
-                                            @else
-                                            {{ count(Auth::user()->maintenance) }} Maintenance Requests
-                                            @endif</a> </li>
+                                        @if (count(Auth::user()->maintenance)==0)
+                                        Maintenance Requests
+                                        @else
+                                        {{ count(Auth::user()->maintenance) }} Maintenance Requests
+                                        @endif</a> </li>
                                     @endif
                                     @if (Auth::user()->type=='tenant')
                                     <li class="nav-item"> <a class="nav-link" href="{{ route('user.agreement.tenant') }}">My Agreements</a> </li>
+                                    <li class="nav-item"> <a class="nav-link" href="{{ route('user.agreement.rent') }}">My Rented Poroperties</a> </li>
                                     <li class="nav-item"> <a class="nav-link" href="{{ route('user.agreementRequest.index') }}">My Agreement Requests</a> </li>
                                     <li class="nav-item"> <a class="nav-link" href="{{ route('user.maintenance.index') }}">My Maintenance Requests</a> </li>
                                     @endif

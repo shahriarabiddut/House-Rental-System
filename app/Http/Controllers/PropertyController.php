@@ -197,6 +197,9 @@ class PropertyController extends Controller
     {
         //
         $data = Property::find($id);
+        if ($data->status == 'rent') {
+            return redirect()->route('user.property.index')->with('danger', 'Not Permitted!');
+        }
         $data->delete();
         return redirect()->route('user.property.index')->with('danger', 'Property has been Deleted Successfully!');
     }

@@ -93,6 +93,7 @@
                                             <td class="text-capitalize">{{ $data->bedroom }}</td>
                                             <td>Property Type :</td>
                                             <td class="text-capitalize">{{ $data->type }}</td>
+                                            
                                         </tr>
                                         <tr>
                                             <td>Floor :</td>
@@ -106,7 +107,10 @@
                                             <td>Division :</td>
                                             <td class="text-capitalize">{{ $data->state }}</td>
                                         </tr>
-                                        
+                                        <tr>
+                                            <td>Property Size :</td>
+                                            <td class="text-capitalize">{{ $data->size }} sqft.</td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>

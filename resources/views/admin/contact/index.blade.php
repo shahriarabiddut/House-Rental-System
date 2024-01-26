@@ -1,5 +1,5 @@
 @extends('admin/layout')
-@section('title', 'Properties')
+@section('title', 'Contact Messages')
 
 @section('content')
 
@@ -19,7 +19,7 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h3 class="m-0 font-weight-bold text-primary">Property Data
+            <h3 class="m-0 font-weight-bold text-primary">Contact Message Data
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -28,10 +28,8 @@
                         <tr>
                             <th>#</th>
                             <th>Name</th>
-                            <th>type</th>
-                            <th>BHK</th>
-                            <th>Status</th>
-                            <th>Owner</th>
+                            <th>Email</th>
+                            <th>Subject</th>
                             <th>Submitted</th>
                             <th>Action</th>
                         </tr>
@@ -40,10 +38,8 @@
                         <tr>
                             <th>#</th>
                             <th>Name</th>
-                            <th>type</th>
-                            <th>BHK</th>
-                            <th>Status</th>
-                            <th>Owner</th>
+                            <th>Email</th>
+                            <th>Subject</th>
                             <th>Submitted</th>
                             <th>Action</th>
                         </tr>
@@ -53,18 +49,13 @@
                         @foreach ($data as $key=> $d)
                         <tr>
                             <td>{{ ++$key }}</td>
-                            <td>{{ $d->title }}</td>
-                            <td>{{ $d->type }}</td>
-                            <td>{{ $d->bedroom }} BHK</td>
-                            <td>{{ $d->status }}</td>
-                            <td><a href="{{ route('user.view',$d->owner->id) }}">{{ $d->owner->name }}</a></td>
+                            <td>{{ $d->name }}</td>
+                            <td>{{ $d->email }}</td>
+                            <td>{{ $d->subject }}</td>
                             <td>{{ $d->created_at }}</td>
                             
                             <td class="text-center">
-                                <a href="{{ url('admin/property/'.$d->id) }}" class="btn btn-info btn-sm mb-1"><i class="fa fa-eye"></i></a> 
-                                @if($d->status!='rent')
-                                <a href="{{ url('admin/property/'.$d->id.'/delete') }}" class="btn btn-danger btn-sm mb-1"><i class="fa fa-trash"></i></a> 
-                                @endif
+                                <a href="{{ url('admin/contact/'.$d->id) }}" class="btn btn-info btn-sm mb-1"><i class="fa fa-eye"></i></a> 
                             </td>
 
                         </tr>

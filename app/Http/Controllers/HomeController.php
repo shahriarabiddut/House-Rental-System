@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contact;
 use Carbon\Carbon;
 use App\Models\Property;
 use Illuminate\Http\Request;
@@ -22,6 +23,32 @@ class HomeController extends Controller
     {
         //
         return view('contact');
+    }
+    public function contactStore(Request $request)
+    {
+        //
+        $data = new Contact();
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'subject' => 'required',
+            'message' => 'required',
+        ]);
+        $data->name = $request->name;
+        $data->email = $request->email;
+        $data->phone = $request->phone;
+        $data->subject = $request->subject;
+        $data->message = $request->message;
+        //
+        $data->save();
+
+        return redirect()->back()->with('success', 'Contact Message Sent Successfully!');
+    }
+    public function about()
+    {
+        //
+        return view('about');
     }
     public function property()
     {

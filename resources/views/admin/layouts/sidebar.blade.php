@@ -74,18 +74,18 @@
     </div>
     <!-- Nav Item Support - Utilities Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link @if (!request()->is('user/contact*'))
+        <a class="nav-link @if (!request()->is('admin/contact*'))
             collapsed
         @endif" href="#" data-toggle="collapse" data-target="#collapseEight"
             aria-expanded="true" aria-controls="collapseEight">
             <i class="fas fa-ticket-alt"></i>
             <span>Contact Message</span>
         </a>
-        <div id="collapseEight" class="collapse @if(request()->is('user/contact*')) show @endif" aria-labelledby="headingUtilities"
+        <div id="collapseEight" class="collapse @if(request()->is('admin/contact*')) show @endif" aria-labelledby="headingUtilities"
             data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Contact Message Management</h6>
-                <a class="collapse-item" href="{{-- route('admin.support.index') --}}">View Messages</a>
+                <a class="collapse-item" href="{{ route('admin.contact.index') }}">View Messages</a>
             </div>
         </div>
     </li>

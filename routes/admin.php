@@ -26,6 +26,8 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
 Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
     // Settings Crud
     Route::get('settings/', [HomeController::class, 'editSetting'])->name('settings.edit');
+    Route::get('contact/', [HomeController::class, 'message'])->name('contact.index');
+    Route::get('contact/{id}', [HomeController::class, 'messageShow'])->name('contact.show');
     Route::put('settings/update/{id}', [HomeController::class, 'updateSetting'])->name('settings.update');
     //Profile
     Route::get('/profile', [HomeController::class, 'view'])->name('profile.view');
@@ -42,6 +44,7 @@ Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
     Route::get('property/booking/{id}', [PropertyController::class, 'bookingshow'])->name('booking.show');
     Route::get('property/payment', [PropertyController::class, 'payment'])->name('payment.index');
     Route::get('property/payment/{id}', [PropertyController::class, 'paymentShow'])->name('payment.show');
+    Route::get('property/{id}/delete', [PropertyController::class, 'destroy'])->name('property.delete');
     Route::resource('property', PropertyController::class);
 
     //Revoke Agreement

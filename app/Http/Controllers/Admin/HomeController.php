@@ -10,6 +10,7 @@ use App\Models\Agreement;
 use App\Models\SiteOption;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Contact;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
@@ -103,5 +104,17 @@ class HomeController extends Controller
         }
         //
         return redirect()->back()->with('success', 'Agreement has been Revoked Successfully!');
+    }
+    public function message()
+    {
+        //
+        $data = Contact::all();
+        return view('admin.contact.index', ['data' => $data]);
+    }
+    public function messageShow(string $id)
+    {
+        //
+        $data = Contact::find($id);
+        return view('admin.contact.show', ['data' => $data]);
     }
 }

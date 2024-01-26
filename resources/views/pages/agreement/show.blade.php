@@ -234,7 +234,7 @@
                                 @if (Auth::user()->type=='tenant' && $data->tenantid!= 0)
                                 <a href="{{ route('user.maintenance.create',$data->id) }}">
                                     <div class="bg-info d-block px-3 py-2 rounded text-center text-white text-capitalize">
-                                        Add Maintenance Request With
+                                        Add Maintenance Request
                                     </div></a>
                                     
                                 @endif

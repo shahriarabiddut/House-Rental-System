@@ -37,11 +37,17 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h2 class="text-secondary double-down-line text-center mb-5">Get In Touch</h2>
+                        @if(Session::has('success'))
+            <div class="p-3 mb-2 bg-success text-white">
+                <p>{{ session('success') }} </p>
+            </div>
+            @endif
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <form class="w-100" action="#" method="post">
+                        <form class="w-100" action="{{ route('contact.store') }}" method="post">
+                            @csrf
                             <div class="row">
                                 <div class="row mb-4">
                                     <div class="form-group col-lg-6">

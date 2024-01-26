@@ -65,4 +65,14 @@ class PropertyController extends Controller
         $data = Payment::find($id);
         return view('admin.payment.show', ['data' => $data]);
     }
+    public function destroy(string $id)
+    {
+        //
+        $data = Property::find($id);
+        if ($data->status == 'rent') {
+            return redirect()->route('admin.property.index')->with('danger', 'Not Permitted!');
+        }
+        $data->delete();
+        return redirect()->route('admin.property.index')->with('danger', 'Property has been Deleted Successfully!');
+    }
 }

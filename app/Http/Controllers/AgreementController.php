@@ -36,6 +36,13 @@ class AgreementController extends Controller
         $data = Agreement::all()->where('tenantid', $user_id);
         return view('pages.agreement.tenant', ['data' => $data]);
     }
+    public function tenantRent()
+    {
+        //
+        $user_id = Auth::user()->id;
+        $data = Agreement::all()->where('tenantid', $user_id)->where('amountStatus', 2);
+        return view('pages.agreement.rent', ['data' => $data]);
+    }
     /**
      * Show the form for creating a new resource.
      */

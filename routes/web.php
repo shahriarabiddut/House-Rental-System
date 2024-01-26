@@ -23,6 +23,8 @@ use Illuminate\Support\Facades\Auth;
 
 Route::get('/', [HomeController::class, 'home'])->name('root');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
+Route::post('/contact/store', [HomeController::class, 'contactStore'])->name('contact.store');
+Route::get('/about', [HomeController::class, 'about'])->name('about');
 Route::get('/property', [HomeController::class, 'property'])->name('property');
 Route::get('/property/{id}/show', [HomeController::class, 'propertyShow'])->name('property.show');
 Route::post('/property/search', [HomeController::class, 'propertySearch'])->name('property.search');
@@ -76,6 +78,7 @@ Route::middleware('userType:tenant')->prefix('user')->name('user.')->group(funct
 
     Route::get('agreements/tenant', [AgreementController::class, 'tenant'])->name('agreement.tenant');
     Route::get('agreement/{id}/revoke', [AgreementController::class, 'revoke'])->name('agreement.revoke');
+    Route::get('rent/property', [AgreementController::class, 'tenantRent'])->name('agreement.rent');
 
     // Agreement Request
     Route::get('agreementRequest/{id}/delete', [AgreementRequestController::class, 'destroy'])->name('agreement.request.delete');
