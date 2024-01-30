@@ -110,7 +110,7 @@
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label">Division</label>
                                 <div class="col-lg-9">
-                                    <input type="text" class="form-control" name="state" required placeholder="Enter State">
+                                    <input type="text" class="form-control" name="state" required placeholder="Enter Division">
                                 </div>
                             </div>
                         </div><!-- ok -->
@@ -141,7 +141,7 @@
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label">Area Size</label>
                                 <div class="col-lg-9">
-                                    <input type="text" class="form-control" name="asize" required placeholder="Enter Area Size (in sqrt)">
+                                    <input type="text" class="form-control" name="asize" required placeholder="Enter Area Size (in sqft)">
                                 </div>
                             </div>
                             <div class="form-group row">

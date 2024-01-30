@@ -44,7 +44,7 @@
         let jsonDataElement = document.getElementById('jsonData');
 
         // Convert the JSON data to a string and display it
-        jsonDataElement.innerHTML = '<p>' + data.email + '</p>' + '<p>' + data.mobile + '</p>';
+        jsonDataElement.innerHTML = '<p>' + data.email + '</p>' + '<p clss="btn btn-success"> <a href=" ' + 'http://127.0.0.1:8000/userProfile/' + data.id +'">View Profile!</a></p>';
     }
 
     // Call the getLastNumberFromURL function when the page loads

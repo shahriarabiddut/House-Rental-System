@@ -8,6 +8,7 @@ use App\Models\Property;
 use App\Models\Agreement;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Maintenance;
 use Illuminate\Support\Facades\Auth;
 
 class PropertyController extends Controller
@@ -64,6 +65,19 @@ class PropertyController extends Controller
         //
         $data = Payment::find($id);
         return view('admin.payment.show', ['data' => $data]);
+    }
+    public function maintenanceRequest()
+    {
+        //
+        $data = Maintenance::all();
+        return view('admin.maintenance.index', ['data' => $data]);
+    }
+
+    public function maintenanceRequestshow(string $id)
+    {
+        //
+        $data = Maintenance::find($id);
+        return view('admin.maintenance.show', ['data' => $data]);
     }
     public function destroy(string $id)
     {

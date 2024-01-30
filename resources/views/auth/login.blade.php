@@ -4,8 +4,8 @@
 
 @section('content')
         <!--	login   --->
-        <div class="col col-md-4"></div>
-        <div class="page-wrappers login-body col col-md-4 my-3 p-2 text-center bg-gray">
+        <div class="col col-md-3"></div>
+        <div class="page-wrappers login-body col col-md-6 my-3 p-2 text-center bg-gray">
           <div class="login-wrapper">
             <div class="container">
                 <div class="loginbox">
@@ -22,8 +22,8 @@
             @error('password')
             <div class="text-bold bg-danger text-center text-white p-2">{{ $message }}</div>
             @enderror
-              <h1>Login</h1>
-              <p class="account-subtitle">Access to our dashboard</p>
+              <h1 class="mb-5" style="color: black;">Login</h1>
+             
               <!-- Form -->
               <form method="post" action="{{ route('login') }}">
                 @csrf
@@ -51,8 +51,8 @@
                     @endif
                     <hr>
                     @if (Route::has('register'))
-                    <p class="text-center">Don't Have an account?
-                        <a href="{{ route('register') }}" class="btn btn-block btn-info">
+                    <p class="">Don't Have an account?
+                        <a href="{{ route('register') }}" class="">
                             <i class="fa fa-signup m-2"></i>Create an Account</a>
                     </p>
                     @endif
@@ -64,7 +64,7 @@
           </div>
       </div>
       
-      <div class="col col-md-4"></div>
+      <div class="col col-md-3"></div>
 <!--	login  -->
 @section('scripts')
 @endsection

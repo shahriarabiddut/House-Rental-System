@@ -28,6 +28,8 @@ Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
     Route::get('settings/', [HomeController::class, 'editSetting'])->name('settings.edit');
     Route::get('contact/', [HomeController::class, 'message'])->name('contact.index');
     Route::get('contact/{id}', [HomeController::class, 'messageShow'])->name('contact.show');
+    Route::get('maintenanceRequest/', [PropertyController::class, 'maintenanceRequest'])->name('maintenanceRequest.index');
+    Route::get('maintenanceRequest/{id}', [PropertyController::class, 'maintenanceRequestShow'])->name('maintenanceRequest.show');
     Route::put('settings/update/{id}', [HomeController::class, 'updateSetting'])->name('settings.update');
     //Profile
     Route::get('/profile', [HomeController::class, 'view'])->name('profile.view');

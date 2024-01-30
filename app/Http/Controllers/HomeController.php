@@ -54,6 +54,7 @@ class HomeController extends Controller
     {
         //
         $data = Property::paginate(4);
+        // dd($data);
         return view('pages.property', ['data' => $data]);
     }
     public function propertyShow(string $id)
@@ -65,17 +66,18 @@ class HomeController extends Controller
     public function propertySearch(Request $request)
     {
         //
+        $data = Property::all();
         if ($request->type != '') {
-            $data = Property::all()->where('type', $request->type);
+            $data = $data->where('type', $request->type);
         }
         if ($request->price != '') {
-            $data = Property::all()->where('price', '<=', $request->price);
+            $data = $data->where('price', '<=', $request->price);
         }
         if ($request->bhk != '') {
-            $data = Property::all()->where('bedroom', '<=', $request->bhk);
+            $data = $data->where('bedroom', '==', $request->bhk);
         }
         if ($request->city != '') {
-            $data = Property::all()->where('city', '==', $request->city);
+            $data = $data->where('city', '==', $request->city);
         }
         if ($request->type == '' && $request->city == '' && $request->price == '' && $request->bhk == '') {
             $data = Property::all();

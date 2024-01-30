@@ -24,37 +24,61 @@
 
 <body>
 
-    <section class="pt-5 pb-5 mt-0 align-items-center d-flex bg-dark" style="min-height: 100vh; background-size: cover; background-image: url('{{ asset($SiteOption[3]->value) }}');background-color:red;">
+    <section class="pt-5 pb-5 mt-0 align-items-center d-flex " style="background-color: white" >
         <div class="container-fluid">
+
+        <style>
+          .card-title{
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: black;
+          }
+          .rounded,input{
+            border-radius: 100px !important;
+          }
+          .rounded{
+            background-color:#28a745 !important;
+            transition: all .3s ease;
+          }
+          .rounded:hover{
+            background-color:white !important;
+            color: black;
+            border: 1px solid black;
+          }
+
+          .padding{
+            padding: 30px;
+          }
+        </style>
             
           <div class="row  justify-content-center align-items-center d-flex-row text-center h-100">
-            <div class="col-12 col-md-4 col-lg-4 h-50 ">
+            <div class="col-12 col-md-4 col-lg-5 h-50 ">
               <div class="card shadow">
-                <div class="card-body mx-2">
+                <div class="card-body padding mx-2">
                 @error('email')
                   <div class="text-bold bg-danger text-center text-white p-2">{{ $message }}</div>
                   @enderror
                   @error('password')
                   <div class="text-bold bg-danger text-center text-white p-2">{{ $message }}</div>
                   @enderror
-                  <img src="{{ asset($SiteOption[1]->value) }}" class="rounded mx-auto d-block" alt="Logo" style="height: 150px;">
+                 
                   <h4 class="card-title mt-1 text-center">Admin Login</h4>
                   <form method="POST" action="{{ route('admin.adminlogin') }}">
                     @csrf
                     <div class="form-group input-group">
-                      <div class="input-group-prepend">
+                      <!-- <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
-                      </div> 
-                      <input required name="email" class="form-control" placeholder="Enter Email address" type="email" value="{{ old('email') }}">
+                      </div>  -->
+                      <input required name="email" class="form-control rounded-full" placeholder="Enter Email address" type="email" value="{{ old('email') }}">
                     </div>
                     <div class="form-group input-group">
-                      <div class="input-group-prepend">
+                      <!-- <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
-                      </div>
-                      <input required name="password" class="form-control" placeholder="Enter password" type="password" value="{{ old('password') }}">
+                      </div> -->
+                      <input  required name="password" class="form-control rounded-full" placeholder="Enter password" type="password" value="{{ old('password') }}">
                     </div>
                     <div class="form-group">
-                      <button type="submit" class="btn btn-primary btn-block"> Login </button>
+                      <button type="submit" class="btn btn-primary rounded btn-block w-50 mx-auto"> Login </button>
                     </div>
                   </form>
                 </div>

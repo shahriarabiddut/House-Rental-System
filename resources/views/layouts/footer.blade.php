@@ -1,40 +1,24 @@
 <footer class="full-row bg-secondary p-0">
     <div class="container">
+            <style>
+                .text-white li:hover {
+                cursor: pointer !important;
+                color: rgb(223, 220, 220) !important;
+    }
+        </style>
         <div  class="row">
             <div class="col-lg-12">
                 <div class="divider py-40">
                     <div class="row">
-                        <div class="col-md-12 col-lg-4">
+                        <div class="col-md-12 col-lg-8">
                             <div class="footer-widget mb-4">
-                                <div class="footer-logo mb-4"> <h3>House Rental</h3> </div>
+                                <div class="footer-logo mb-4"> <h3 style="color: white">House Rental</h3> </div>
                                 <p class="pb-20 text-white">We are committed to ensuring digital accessibility for individuals. We are continuously working to improve the accessibility of our web experience for everyone, and we welcome feedback and accommodation requests.</p>
                                 
                                 </div>
                         </div>
-                        <div class="col-md-12 col-lg-8">
-                            <div class="row">
-                                <div class="col-md-4 col-lg-4">
-                                    <div class="footer-widget footer-nav mb-4">
-                                        <h4 class="widget-title text-white double-down-line-left position-relative">Support</h4>
-                                        <ul class="hover-text-primary">
-                                            <li><a href="#" class="text-white">Forum</a></li>
-                                            <li><a href="#" class="text-white">Terms and Condition</a></li>
-                                            <li><a href="#" class="text-white">Frequenlty Asked Question</a></li>
-                                            <li><a href="#" class="text-white">Contact</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-lg-4">
-                                    <div class="footer-widget footer-nav mb-4">
-                                        <h4 class="widget-title text-white double-down-line-left position-relative">Quick Links</h4>
-                                        <ul class="hover-text-primary">
-                                            <li><a href="#" class="text-white">About Us</a></li>
-                                            <li><a href="#" class="text-white">Featured Property</a></li>
-                                            <li><a href="#" class="text-white">Submit Property</a></li>
-                                            
-                                        </ul>
-                                    </div>
-                                </div>
+                       
+                             
                                 <div class="col-md-4 col-lg-4">
                                     <div class="footer-widget">
                                         <h4 class="widget-title text-white double-down-line-left position-relative">Contact Us</h4>

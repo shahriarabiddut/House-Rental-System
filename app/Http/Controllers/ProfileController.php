@@ -27,7 +27,7 @@ class ProfileController extends Controller
     }
     public function viewUserJ(string $id)
     {
-        $data = User::select('name', 'email', 'mobile')->where('id', $id)->first();
+        $data = User::select('name', 'email', 'mobile', 'id')->where('id', $id)->first();
         return response()->json($data);
     }
     public function view(Request $request): View

@@ -3,8 +3,8 @@
 
 @section('content')
         <!--	login   --->
-        <div class="col col-md-4"></div>
-        <div class="page-wrappers login-body col col-md-4 my-3 p-2 text-center bg-gray">
+        <div class="col col-md-3"></div>
+        <div class="page-wrappers login-body col col-md-6 my-3 p-2 text-center bg-gray">
           <div class="login-wrapper">
             <div class="container">
                 <div class="loginbox">
@@ -63,7 +63,7 @@
           </div>
       </div>
       
-      <div class="col col-md-4"></div>
+      <div class="col col-md-3"></div>
 <!--	login  -->
 @section('scripts')
 @endsection

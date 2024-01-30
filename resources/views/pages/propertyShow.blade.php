@@ -79,7 +79,7 @@
                                     <li><span class="text-secondary">{{ $data->bedroom }}</span> Bedroom</li>
                                     <li><span class="text-secondary">{{ $data->bathroom }}</span> Bathroom</li>
                                     <li><span class="text-secondary">{{ $data->balcony }}</span> Balcony</li>
-                                    <li><span class="text-secondary">{{ $data->hall }}</span> Drwaing room</li>
+                                    <li><span class="text-secondary">{{ $data->hall }}</span> Drawing room</li>
                                     <li><span class="text-secondary">{{ $data->kitchen }}</span> Kitchen</li>
                                 </ul>
                             </div>
@@ -152,7 +152,7 @@
                                     </div></a>
                                     <br>
                                     @if ($data->agreement->tenantid==null)
-                                    <p>Property ID = {{ $data->id }}</p>
+                                    <p class="bg-info d-block px-3 py-2 rounded text-center text-white text-capitalize">Property ID = {{ $data->id }}</p>
                                         @else
                                         <p>Tenant - {{ $data->agreement->tenant->name }}</p>
                                     @endif

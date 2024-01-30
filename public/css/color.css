@@ -44,10 +44,10 @@ Theme Color All Codes Variable
 Font Variable
 ==================================*/
 :root {
-	 --theme-ordinary-font: 'Muli', sans-serif;  /* Font use for normal text and general text ok*/
+	--theme-ordinary-font: 'Roboto', sans-serif;  /* Font use for normal text and general text ok*/
 }
 :root {
-	 --theme-highlight-font: 'Comfortaa', cursive;  /* Font used in title or special area ok*/
+	--theme-highlight-font: 'Roboto', sans-serif;  /* Font used in title or special area ok*/
 }
 
 

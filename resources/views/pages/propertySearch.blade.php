@@ -84,16 +84,7 @@
                         </div>
                     </div>
 					
-                    <div class="col-lg-4">
-                        <div class="sidebar-widget mt-5">
-                            <h4 class="double-down-line-left text-secondary position-relative pb-4 mb-4">Recently Added Property</h4>
-                            <ul class="property_list_widget">
-							
-                                <li> <img src="" alt="pimage">
-                                    <h6 class="text-secondary hover-text-success text-capitalize"><a href="">Title</a></h6>
-                                    <span class="font-14"><i class="fas fa-map-marker-alt icon-success icon-small"></i> s</span>
-                                    
-                                </li>
+                
 
                             </ul>
                         </div>

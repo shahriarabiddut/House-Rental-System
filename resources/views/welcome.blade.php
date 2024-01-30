@@ -3,7 +3,7 @@
 
 @section('content')
 <!--	Banner Start   -->
-<div class="overlay-black w-100 slider-banner1 position-relative" style="background-image: url({{ asset('images/bg.jpeg')}}); background-size: cover; background-position: center center; background-repeat: no-repeat;">
+<div class="overlay-black w-100 slider-banner1 position-relative" style="background-image: url({{ asset('images/bg.jpg')}}); background-size: cover; background-position: center center; background-repeat: no-repeat;">
     <div class="container h-100">
         <div class="row h-100 align-items-center">
             <div class="col-lg-12">
@@ -78,11 +78,11 @@
                     <div class="col-md-12">
                         <div class="tab-content mt-4" id="pills-tabContent">
                             <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home">
-                                <div class="row">
+                                <div class="row d-flex justify-content-center align-items-center">
                                     @foreach ($data as $key => $property)
                                     @if ($property->status=='available') 
                                                 
-                                    <div class="col-md-6 col-lg-4">
+                                    <div class="col-md-6 col-lg-6">
                                         <div class="featured-thumb hover-zoomer mb-4">
                                             <a href="{{ route('property.show',$property->id) }}">
                                             <div class="overlay-black overflow-hidden position-relative"> <img src="{{ asset('storage/'.$property->pimage) }}" alt="pimage">

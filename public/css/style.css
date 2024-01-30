@@ -544,8 +544,17 @@ a.bg-primary:focus,
 .advance-sidebar .radio-check input[type="checkbox"]:checked + label {
   background-color: var(--theme-secondary-color);
 }
+.loginbox{
+  padding: 60px;
+}
+.login-body{
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.login-page{
+  
+}
 .bg-gray {
-  background-color: var(--theme-gray-color) !important;
+  background-color: white !important;
 }
 .table-striped tbody tr:nth-of-type(2n + 1) {
   background-color: var(--theme-gray-color);
@@ -577,7 +586,7 @@ a.bg-primary:focus,
 }
 .fixed-header-bg-secondary.fixed-top,
 .bg-secondary {
-  background-color: #343434;
+  background-color: #28a745 !important;
 }
 .owl-nav button {
   background-color: var(--theme-gray-color) !important;
@@ -2082,6 +2091,12 @@ sup {
 .dashboard-panel .success.alert {
   border-left-color: #f46868;
 }
+.btn{
+  border-radius: 100px !important;
+}
+input{
+  border-radius: 100px !important;
+}
 .dashboard-panel .success .closebtn {
   font-weight: bold;
   font-size: 22px;
@@ -3073,6 +3088,7 @@ Register page
     padding: 0 8px;
     line-height: 35px;
   }
+ 
   .copyright {
     line-height: 40px;
     padding: 15px 0;

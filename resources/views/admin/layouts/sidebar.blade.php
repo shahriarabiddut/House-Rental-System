@@ -1,13 +1,24 @@
-<ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
+<ul class="navbar-nav sidebar sidebar-dark accordion" style="background-color: #28a745 " id="accordionSidebar">
+
+<style>
+    .sidebar-heading{
+        color: white !important;
+        font-size: 12px !important;
+    }
+    .nav-link span{
+color: white !important;
+font-size: 14px !important;
+    }
+</style>
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('admin.dashboard') }}">
-        <div class="sidebar-brand-icon rotate-n-15 col-md-4">
+        <!-- <div class="sidebar-brand-icon rotate-n-15 col-md-4">
             @isset($SiteOption)
             <img src="{{ asset($SiteOption[1]->value) }}" alt="" srcset="" width="100%">
             @endisset
-        </div>
-        <div class="sidebar-brand-text mx-2 col-md-8">Admin Panel</div>
+        </div> -->
+        <div class="sidebar-brand-text mx-2 col-md-8">Admin</div>
     </a>
 
     <!-- Divider -->
@@ -40,6 +51,7 @@
                <a class="collapse-item" href="{{ route('admin.agreement.index') }}">View Agreements</a>
                <a class="collapse-item" href="{{ route('admin.payment.index') }}">View Payments</a>
                <a class="collapse-item" href="{{ route('admin.booking.index') }}">View Bookings</a>
+               <a class="collapse-item" href="{{ route('admin.maintenanceRequest.index') }}">View Maintenance Request</a>
            </div>
        </div>
    </li>

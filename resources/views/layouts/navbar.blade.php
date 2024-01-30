@@ -62,9 +62,9 @@
                                     @if (Auth::user()->type=='owner')
                                     <li class="nav-item"> <a class="nav-link" href="{{route('user.agreement.index')}}">
                                         @if (count(Auth::user()->agreement)==0)
-                                        Agreement Contracts
+                                        Agreement request
                                         @else
-                                        {{ count(Auth::user()->agreement) }} Agreement Contract Requests
+                                        {{ count(Auth::user()->agreement) }} Agreement Requests
                                         @endif</a> </li>
                                     <li class="nav-item"> <a class="nav-link" href="{{route('user.aRequest.indexOwner')}}">
                                         @if (count(Auth::user()->agreementRequest)==0)

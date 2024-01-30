@@ -16,7 +16,6 @@
                 @csrf
                 <div class="description">
                     <h5 class="text-secondary">Add Terms</h5>
-                    <p><b> To Add New Line in Terms add &lt;/br&gt; at the end</b></p>
                     
                     <hr>
 
