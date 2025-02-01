@@ -1,69 +1,102 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# House Rental System
+A Laravel-based house rental system where tenants can list their properties for rent, and users can apply through an integrated chat system. Once both parties agree on terms, users can complete the rental application, and tenants can approve or reject requests to finalize the process.
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
-## Storage Link Command
+## Required Configuration
+- **PHP** >= 8.1
+- **Laravel** 10
 
+## Installation
+Follow these steps to set up the project:
+
+**Clone the Repository**:
+```bash
+git clone <repository-url>
+cd <project-directory>
+```
+
+**Install Dependencies**:
+Run the following commands to install the required packages:
+```bash
+composer update
+composer install
+```
+
+**Generate Application Key**:
+Generate the Laravel application key: This will update the APP_KEY in your .env file.
+```bash
+php artisan key:generate
+```
+
+**Set Up Storage Link**:
+Create a symbolic link for the storage directory:
+```bash
 php artisan storage:link
+```
 
-## About Laravel
+**Configure Database**:
+Update your .env file with your database credentials:
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=your_database_name
+DB_USERNAME=your_database_user
+DB_PASSWORD=your_database_password
+```
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+**Run Migrations**:
+Initialize the database by running migrations:
+```bash
+php artisan migrate
+```
 
--   [Simple, fast routing engine](https://laravel.com/docs/routing).
--   [Powerful dependency injection container](https://laravel.com/docs/container).
--   Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
--   Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
--   Database agnostic [schema migrations](https://laravel.com/docs/migrations).
--   [Robust background job processing](https://laravel.com/docs/queues).
--   [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+To seed the database with initial data, use:
+```bash
+php artisan migrate:refresh --seed
+```
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Commands
 
-## Learning Laravel
+**Create a Controller with CRUD Operations**:
+To generate a controller with CRUD methods, use:
+```bash
+php artisan make:controller <ControllerName> -r
+```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+**Create a Model with Migration**:
+To create a model along with its migration file, use:
+```bash
+php artisan make:model <ModelName> -m
+```
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Project Features
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+1. **Multi-Authentication System**
+   - Admin, Tenant, and User roles are implemented.
+   - Laravel Breeze is used for authentication scaffolding.
+   - Email Verification is enabled for users.
+   - Login is available for all roles.
+   - Registration is available for Tenants and Users.
 
-## Laravel Sponsors
+2. **Property Management**
+   - Tenants can list their properties for rent.
+   - Property CRUD operations.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+3. **Chat System**
+   - Integrated chat system for communication between tenants and users.
 
-### Premium Partners
-
--   **[Vehikl](https://vehikl.com/)**
--   **[Tighten Co.](https://tighten.co)**
--   **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
--   **[64 Robots](https://64robots.com)**
--   **[Cubet Techno Labs](https://cubettech.com)**
--   **[Cyber-Duck](https://cyber-duck.co.uk)**
--   **[Many](https://www.many.co.uk)**
--   **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
--   **[DevSquad](https://devsquad.com)**
--   **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
--   **[OP.GG](https://op.gg)**
--   **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
--   **[Lendio](https://lendio.com)**
+4. **Rental Application Process**
+   - Users can apply for rental properties.
+   - Tenants can approve or reject rental applications to finalize the process.
 
 ## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+If you'd like to contribute to this project, please follow these steps:
+1. Fork the repository.
+2. Create a new branch for your feature or bugfix.
+3. Submit a pull request.
 
 ## License
+This project is open-source and available under the MIT License.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Support
+For any issues or questions, please contact the development team or open an issue on the repository.
